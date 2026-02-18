@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="sk">
 <head>
     <meta charset="UTF-8">
@@ -12,990 +13,1217 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Space Grotesk', -apple-system, sans-serif;
-            background: #0a0a0a;
-            color: #ffffff;
-            line-height: 1.4;
-            overflow-x: hidden;
-        }
+```
+    body {
+        font-family: 'Space Grotesk', -apple-system, sans-serif;
+        background: #0a0a0a;
+        color: #ffffff;
+        line-height: 1.4;
+        overflow-x: hidden;
+    }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 40px 24px;
-        }
+    .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 40px 24px;
+    }
 
-        /* Header */
-        .main-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 60px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #ffffff;
-        }
+    .main-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 60px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #ffffff;
+    }
 
+    .logo {
+        font-size: 32px;
+        font-weight: 700;
+        letter-spacing: -1px;
+    }
+
+    .sync-status {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        padding: 8px 16px;
+        border: 1px solid #ffffff;
+        transition: all 0.2s;
+    }
+
+    .sync-status:hover {
+        background: #ffffff;
+        color: #0a0a0a;
+    }
+
+    .sync-dot {
+        width: 8px;
+        height: 8px;
+        background: #00ff00;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+    }
+
+    .goals-section {
+        margin-bottom: 80px;
+    }
+
+    .section-title {
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+        color: #888;
+    }
+
+    .goals-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2px;
+        background: #ffffff;
+    }
+
+    .goal-card {
+        background: #0a0a0a;
+        padding: 32px;
+        border: 2px solid #ffffff;
+        cursor: pointer;
+        transition: all 0.3s;
+        position: relative;
+    }
+
+    .goal-card:hover {
+        background: #ffffff;
+        color: #0a0a0a;
+    }
+
+    .goal-card:hover .goal-status {
+        color: #0a0a0a;
+    }
+
+    .goal-name {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+
+    .goal-status {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #888;
+    }
+
+    .goal-type {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        font-size: 10px;
+        padding: 4px 8px;
+        background: #ffffff;
+        color: #0a0a0a;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 2px;
+        background: #ffffff;
+        margin-bottom: 60px;
+    }
+
+    .stat-item {
+        background: #0a0a0a;
+        padding: 32px;
+        text-align: center;
+        border: 2px solid #ffffff;
+    }
+
+    .stat-number {
+        font-size: 56px;
+        font-weight: 700;
+        line-height: 1;
+        margin-bottom: 12px;
+    }
+
+    .stat-label {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: #888;
+    }
+
+    .add-section {
+        margin-bottom: 60px;
+    }
+
+    .add-buttons {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .add-btn {
+        padding: 16px 32px;
+        background: #ffffff;
+        color: #0a0a0a;
+        border: none;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: inherit;
+    }
+
+    .add-btn:hover {
+        background: #00ff00;
+        transform: translateY(-2px);
+    }
+
+    .add-btn.import-btn {
+        background: #ff00ff;
+    }
+
+    .add-btn.import-btn:hover {
+        background: #ff00aa;
+    }
+
+    .filters {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+    }
+
+    .filter-select {
+        padding: 12px 20px;
+        background: transparent;
+        border: 2px solid #ffffff;
+        color: #ffffff;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        font-family: inherit;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='white' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        padding-right: 40px;
+    }
+
+    .filter-select:focus {
+        outline: none;
+        background-color: #ffffff;
+        color: #0a0a0a;
+    }
+
+    .contacts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2px;
+        background: #ffffff;
+    }
+
+    .contact-card {
+        background: #0a0a0a;
+        padding: 24px;
+        border: 2px solid #ffffff;
+        cursor: pointer;
+        transition: all 0.2s;
+        position: relative;
+    }
+
+    .contact-card:hover {
+        background: #ffffff;
+        color: #0a0a0a;
+        transform: scale(1.02);
+        z-index: 10;
+    }
+
+    .contact-card:hover .contact-status,
+    .contact-card:hover .contact-type,
+    .contact-card:hover .contact-date {
+        color: #0a0a0a;
+    }
+
+    .contact-name {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+    .contact-status {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #888;
+        margin-bottom: 4px;
+    }
+
+    .contact-type {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        font-size: 9px;
+        padding: 3px 6px;
+        background: #ffffff;
+        color: #0a0a0a;
+        text-transform: uppercase;
+    }
+
+    .contact-date {
+        font-size: 9px;
+        color: #666;
+        margin-top: 12px;
+    }
+
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(10, 10, 10, 0.98);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        padding: 20px;
+        overflow-y: auto;
+    }
+
+    .modal-content {
+        background: #0a0a0a;
+        border: 3px solid #ffffff;
+        max-width: 900px;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .modal-header {
+        padding: 40px;
+        border-bottom: 2px solid #ffffff;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .modal-name {
+        font-size: 36px;
+        font-weight: 700;
+        letter-spacing: -1px;
+    }
+
+    .close-btn {
+        font-size: 32px;
+        background: none;
+        border: none;
+        color: #ffffff;
+        cursor: pointer;
+        line-height: 1;
+        transition: transform 0.2s;
+    }
+
+    .close-btn:hover {
+        transform: rotate(90deg);
+    }
+
+    .modal-body {
+        padding: 40px;
+    }
+
+    .modal-section {
+        margin-bottom: 40px;
+    }
+
+    .modal-label {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: #888;
+        margin-bottom: 12px;
+    }
+
+    .modal-value {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .modal-value a {
+        color: #ffffff;
+        text-decoration: underline;
+    }
+
+    .modal-value a:hover {
+        color: #00ff00;
+    }
+
+    .contact-links {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .contact-link {
+        padding: 8px 16px;
+        background: transparent;
+        border: 1px solid #ffffff;
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.2s;
+    }
+
+    .contact-link:hover {
+        background: #ffffff;
+        color: #0a0a0a;
+    }
+
+    .input-field {
+        width: 100%;
+        padding: 16px;
+        background: transparent;
+        border: 2px solid #ffffff;
+        color: #ffffff;
+        font-size: 14px;
+        font-family: inherit;
+        margin-bottom: 20px;
+    }
+
+    .input-field:focus {
+        outline: none;
+        background: #1a1a1a;
+    }
+
+    .input-field::placeholder {
+        color: #666;
+    }
+
+    textarea.input-field {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+    select.input-field,
+    datalist.input-field {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='white' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        padding-right: 40px;
+        cursor: pointer;
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 0;
+    }
+
+    .button {
+        padding: 16px 32px;
+        background: #ffffff;
+        color: #0a0a0a;
+        border: none;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.2s;
+    }
+
+    .button:hover {
+        background: #00ff00;
+    }
+
+    .button-secondary {
+        background: transparent;
+        color: #ffffff;
+        border: 2px solid #ffffff;
+    }
+
+    .button-secondary:hover {
+        background: #ffffff;
+        color: #0a0a0a;
+    }
+
+    .button-row {
+        display: flex;
+        gap: 12px;
+        margin-top: 40px;
+    }
+
+    .photo-upload {
+        width: 120px;
+        height: 120px;
+        border: 2px dashed #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        margin-bottom: 20px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .photo-upload:hover {
+        border-color: #00ff00;
+    }
+
+    .photo-preview {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 80px 20px;
+        color: #666;
+    }
+
+    .empty-state-title {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+
+    .import-zone {
+        border: 3px dashed #ffffff;
+        padding: 60px 20px;
+        text-align: center;
+        margin: 40px 0;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .import-zone:hover {
+        border-color: #00ff00;
+        background: #1a1a1a;
+    }
+
+    .import-zone-title {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+
+    .import-zone-text {
+        color: #888;
+        font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
         .logo {
-            font-size: 32px;
-            font-weight: 700;
-            letter-spacing: -1px;
-        }
-
-        .sync-status {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            padding: 8px 16px;
-            border: 1px solid #ffffff;
-            transition: all 0.2s;
-        }
-
-        .sync-status:hover {
-            background: #ffffff;
-            color: #0a0a0a;
-        }
-
-        .sync-dot {
-            width: 8px;
-            height: 8px;
-            background: #00ff00;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        /* Goals Section */
-        .goals-section {
-            margin-bottom: 80px;
-        }
-
-        .section-title {
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-            color: #888;
-        }
-
-        .goals-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2px;
-            background: #ffffff;
-        }
-
-        .goal-card {
-            background: #0a0a0a;
-            padding: 32px;
-            border: 2px solid #ffffff;
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .goal-card:hover {
-            background: #ffffff;
-            color: #0a0a0a;
-        }
-
-        .goal-card:hover .goal-status {
-            color: #0a0a0a;
-        }
-
-        .goal-name {
             font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .goal-status {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #888;
-        }
-
-        .goal-type {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            font-size: 10px;
-            padding: 4px 8px;
-            background: #ffffff;
-            color: #0a0a0a;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Stats */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 2px;
-            background: #ffffff;
-            margin-bottom: 60px;
-        }
-
-        .stat-item {
-            background: #0a0a0a;
-            padding: 32px;
-            text-align: center;
-            border: 2px solid #ffffff;
         }
 
         .stat-number {
-            font-size: 56px;
-            font-weight: 700;
-            line-height: 1;
-            margin-bottom: 12px;
+            font-size: 40px;
         }
 
-        .stat-label {
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #888;
-        }
-
-        /* Add Buttons */
-        .add-section {
-            margin-bottom: 60px;
-        }
-
-        .add-buttons {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .add-btn {
-            padding: 16px 32px;
-            background: #ffffff;
-            color: #0a0a0a;
-            border: none;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: inherit;
-        }
-
-        .add-btn:hover {
-            background: #00ff00;
-            transform: translateY(-2px);
-        }
-
-        /* Filters */
-        .filters {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .filter-select {
-            padding: 12px 20px;
-            background: transparent;
-            border: 2px solid #ffffff;
-            color: #ffffff;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            font-family: inherit;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='white' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 12px center;
-            padding-right: 40px;
-        }
-
-        .filter-select:focus {
-            outline: none;
-            background-color: #ffffff;
-            color: #0a0a0a;
-        }
-
-        /* Contact Grid */
+        .goals-grid,
         .contacts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2px;
-            background: #ffffff;
-        }
-
-        .contact-card {
-            background: #0a0a0a;
-            padding: 24px;
-            border: 2px solid #ffffff;
-            cursor: pointer;
-            transition: all 0.2s;
-            position: relative;
-        }
-
-        .contact-card:hover {
-            background: #ffffff;
-            color: #0a0a0a;
-            transform: scale(1.02);
-            z-index: 10;
-        }
-
-        .contact-card:hover .contact-status,
-        .contact-card:hover .contact-type,
-        .contact-card:hover .contact-date {
-            color: #0a0a0a;
-        }
-
-        .contact-name {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .contact-status {
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #888;
-            margin-bottom: 4px;
-        }
-
-        .contact-type {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            font-size: 9px;
-            padding: 3px 6px;
-            background: #ffffff;
-            color: #0a0a0a;
-            text-transform: uppercase;
-        }
-
-        .contact-date {
-            font-size: 9px;
-            color: #666;
-            margin-top: 12px;
-        }
-
-        /* Modal */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(10, 10, 10, 0.98);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            padding: 20px;
-            overflow-y: auto;
-        }
-
-        .modal-content {
-            background: #0a0a0a;
-            border: 3px solid #ffffff;
-            max-width: 900px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .modal-header {
-            padding: 40px;
-            border-bottom: 2px solid #ffffff;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        .modal-name {
-            font-size: 36px;
-            font-weight: 700;
-            letter-spacing: -1px;
-        }
-
-        .close-btn {
-            font-size: 32px;
-            background: none;
-            border: none;
-            color: #ffffff;
-            cursor: pointer;
-            line-height: 1;
-            transition: transform 0.2s;
-        }
-
-        .close-btn:hover {
-            transform: rotate(90deg);
-        }
-
-        .modal-body {
-            padding: 40px;
-        }
-
-        .modal-section {
-            margin-bottom: 40px;
-        }
-
-        .modal-label {
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #888;
-            margin-bottom: 12px;
-        }
-
-        .modal-value {
-            font-size: 16px;
-            line-height: 1.6;
-        }
-
-        .modal-value a {
-            color: #ffffff;
-            text-decoration: underline;
-        }
-
-        .modal-value a:hover {
-            color: #00ff00;
-        }
-
-        .contact-links {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .contact-link {
-            padding: 8px 16px;
-            background: transparent;
-            border: 1px solid #ffffff;
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.2s;
-        }
-
-        .contact-link:hover {
-            background: #ffffff;
-            color: #0a0a0a;
-        }
-
-        /* Form Elements */
-        .input-field {
-            width: 100%;
-            padding: 16px;
-            background: transparent;
-            border: 2px solid #ffffff;
-            color: #ffffff;
-            font-size: 14px;
-            font-family: inherit;
-            margin-bottom: 20px;
-        }
-
-        .input-field:focus {
-            outline: none;
-            background: #ffffff;
-            color: #0a0a0a;
-        }
-
-        textarea.input-field {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        select.input-field {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='white' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 12px center;
-            padding-right: 40px;
-            cursor: pointer;
+            grid-template-columns: 1fr;
         }
 
         .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            grid-template-columns: 1fr;
         }
 
-        .button {
-            padding: 16px 32px;
-            background: #ffffff;
-            color: #0a0a0a;
-            border: none;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            cursor: pointer;
-            font-family: inherit;
-            transition: all 0.2s;
+        .modal-name {
+            font-size: 28px;
         }
 
-        .button:hover {
-            background: #00ff00;
+        .filters {
+            flex-direction: column;
         }
 
-        .button-secondary {
-            background: transparent;
-            color: #ffffff;
-            border: 2px solid #ffffff;
-        }
-
-        .button-secondary:hover {
-            background: #ffffff;
-            color: #0a0a0a;
-        }
-
-        .button-row {
-            display: flex;
-            gap: 12px;
-            margin-top: 40px;
-        }
-
-        .photo-upload {
-            width: 120px;
-            height: 120px;
-            border: 2px dashed #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            margin-bottom: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .photo-upload:hover {
-            border-color: #00ff00;
-        }
-
-        .photo-preview {
+        .filter-select {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
         }
+    }
+</style>
+```
 
-        .empty-state {
-            text-align: center;
-            padding: 80px 20px;
-            color: #666;
-        }
-
-        .empty-state-title {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        @media (max-width: 768px) {
-            .logo {
-                font-size: 24px;
-            }
-
-            .stat-number {
-                font-size: 40px;
-            }
-
-            .goals-grid,
-            .contacts-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .modal-name {
-                font-size: 28px;
-            }
-
-            .filters {
-                flex-direction: column;
-            }
-
-            .filter-select {
-                width: 100%;
-            }
-        }
-    </style>
 </head>
 <body>
     <div id="root"></div>
 
-    <!-- Firebase SDK -->
-    <script type="module">
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-        import { getFirestore, collection, doc, setDoc, getDoc, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+```
+<!-- Firebase SDK -->
+<script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+    import { getFirestore, collection, doc, setDoc, getDoc, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyBhSYOBggjEbYkg5Qu-Zfih4BSoPWiXSqc",
-            authDomain: "reach-out-networking-tool.firebaseapp.com",
-            projectId: "reach-out-networking-tool",
-            storageBucket: "reach-out-networking-tool.firebasestorage.app",
-            messagingSenderId: "1052787828053",
-            appId: "1:1052787828053:web:c0e1fae472864df17d7bdc"
+    const firebaseConfig = {
+        apiKey: "AIzaSyBhSYOBggjEbYkg5Qu-Zfih4BSoPWiXSqc",
+        authDomain: "reach-out-networking-tool.firebaseapp.com",
+        projectId: "reach-out-networking-tool",
+        storageBucket: "reach-out-networking-tool.firebasestorage.app",
+        messagingSenderId: "1052787828053",
+        appId: "1:1052787828053:web:c0e1fae472864df17d7bdc"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    window.firebaseDB = db;
+    window.firestoreModules = { collection, doc, setDoc, getDoc, onSnapshot };
+</script>
+
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel">
+    const { useState, useEffect } = React;
+    const { doc, setDoc, getDoc, onSnapshot } = window.firestoreModules;
+    const db = window.firebaseDB;
+
+    const COUNTRIES = [
+        'Slovensko', 'Česká republika', 'Poľsko', 'Rakúsko', 'Nemecko', 
+        'Veľká Británia', 'USA', 'Francúzsko', 'Taliansko', 'Španielsko',
+        'Holandsko', 'Belgicko', 'Švajčiarsko', 'Dánsko', 'Švédsko', 
+        'Nórsko', 'Fínsko', 'Portugalsko', 'Grécko', 'Kanada'
+    ];
+
+    function App() {
+        const [contacts, setContacts] = useState([]);
+        const [selectedContact, setSelectedContact] = useState(null);
+        const [showAddModal, setShowAddModal] = useState(false);
+        const [showImportModal, setShowImportModal] = useState(false);
+        const [addType, setAddType] = useState('reziser');
+        const [filterStatus, setFilterStatus] = useState('all');
+        const [filterType, setFilterType] = useState('all');
+        const [filterCountry, setFilterCountry] = useState('all');
+        const syncCode = 'REZIS-R7YE';
+
+        useEffect(() => {
+            const contactsRef = doc(db, 'workspaces', syncCode);
+            const unsubscribe = onSnapshot(contactsRef, (snapshot) => {
+                if (snapshot.exists()) {
+                    setContacts(snapshot.data().contacts || []);
+                }
+            });
+            return () => unsubscribe();
+        }, []);
+
+        const saveToFirebase = async (updatedContacts) => {
+            try {
+                const contactsRef = doc(db, 'workspaces', syncCode);
+                await setDoc(contactsRef, {
+                    contacts: updatedContacts,
+                    updatedAt: new Date().toISOString()
+                }, { merge: true });
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Chyba pri ukladaní!');
+            }
         };
 
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
+        const handleAddContact = (newContact) => {
+            const contactWithId = {
+                ...newContact,
+                id: Math.max(0, ...contacts.map(c => c.id)) + 1,
+                createdAt: new Date().toISOString()
+            };
+            saveToFirebase([...contacts, contactWithId]);
+            setShowAddModal(false);
+        };
 
-        window.firebaseDB = db;
-        window.firestoreModules = { collection, doc, setDoc, getDoc, onSnapshot };
-    </script>
+        const handleUpdateContact = (updated) => {
+            const newContacts = contacts.map(c => c.id === updated.id ? updated : c);
+            saveToFirebase(newContacts);
+            setSelectedContact(null);
+        };
 
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-    <script type="text/babel">
-        const { useState, useEffect } = React;
-        const { doc, setDoc, getDoc, onSnapshot } = window.firestoreModules;
-        const db = window.firebaseDB;
-
-        function App() {
-            const [contacts, setContacts] = useState([]);
-            const [selectedContact, setSelectedContact] = useState(null);
-            const [showAddModal, setShowAddModal] = useState(false);
-            const [addType, setAddType] = useState('reziser');
-            const [filterStatus, setFilterStatus] = useState('all');
-            const [filterType, setFilterType] = useState('all');
-            const syncCode = 'REZIS-R7YE'; // Your sync code
-
-            // Listen to Firebase
-            useEffect(() => {
-                const contactsRef = doc(db, 'workspaces', syncCode);
-                const unsubscribe = onSnapshot(contactsRef, (snapshot) => {
-                    if (snapshot.exists()) {
-                        setContacts(snapshot.data().contacts || []);
-                    }
-                });
-                return () => unsubscribe();
-            }, []);
-
-            const saveToFirebase = async (updatedContacts) => {
-                try {
-                    const contactsRef = doc(db, 'workspaces', syncCode);
-                    await setDoc(contactsRef, {
-                        contacts: updatedContacts,
-                        updatedAt: new Date().toISOString()
-                    }, { merge: true });
-                } catch (error) {
-                    console.error('Error:', error);
+        const handleImport = async (importedData) => {
+            try {
+                const parsed = JSON.parse(importedData);
+                if (parsed.contacts && Array.isArray(parsed.contacts)) {
+                    // Merge with existing, avoiding duplicates
+                    const existingNames = new Set(contacts.map(c => c.name.toLowerCase()));
+                    const newContacts = parsed.contacts.filter(c => 
+                        !existingNames.has(c.name.toLowerCase())
+                    );
+                    
+                    // Reassign IDs
+                    let maxId = Math.max(0, ...contacts.map(c => c.id));
+                    newContacts.forEach(c => {
+                        c.id = ++maxId;
+                    });
+                    
+                    const merged = [...contacts, ...newContacts];
+                    await saveToFirebase(merged);
+                    alert(`Importovaných ${newContacts.length} nových kontaktov!`);
+                    setShowImportModal(false);
+                } else {
+                    alert('Neplatný formát súboru!');
                 }
-            };
+            } catch (error) {
+                console.error('Import error:', error);
+                alert('Chyba pri importe! Skontroluj formát súboru.');
+            }
+        };
 
-            const handleAddContact = (newContact) => {
-                const contactWithId = {
-                    ...newContact,
-                    id: Math.max(0, ...contacts.map(c => c.id)) + 1,
-                    createdAt: new Date().toISOString()
-                };
-                saveToFirebase([...contacts, contactWithId]);
-                setShowAddModal(false);
-            };
+        const goalContacts = contacts
+            .filter(c => c.status === 'Na oslovenie')
+            .sort(() => Math.random() - 0.5)
+            .slice(0, 3);
 
-            const handleUpdateContact = (updated) => {
-                const newContacts = contacts.map(c => c.id === updated.id ? updated : c);
-                saveToFirebase(newContacts);
-                setSelectedContact(null);
-            };
+        const filteredContacts = contacts.filter(c => {
+            if (filterStatus !== 'all' && c.status !== filterStatus) return false;
+            if (filterType !== 'all' && c.type !== filterType) return false;
+            if (filterCountry !== 'all' && c.country !== filterCountry) return false;
+            return true;
+        });
 
-            // Random goals
-            const goalContacts = contacts
-                .filter(c => c.status === 'Na oslovenie')
-                .sort(() => Math.random() - 0.5)
-                .slice(0, 3);
+        const countries = Array.from(new Set(contacts.map(c => c.country).filter(Boolean))).sort();
 
-            // Filtered contacts
-            const filteredContacts = contacts.filter(c => {
-                if (filterStatus !== 'all' && c.status !== filterStatus) return false;
-                if (filterType !== 'all' && c.type !== filterType) return false;
-                return true;
-            });
+        const stats = {
+            total: contacts.length,
+            reziséri: contacts.filter(c => c.type === 'reziser').length,
+            produkcie: contacts.filter(c => c.type === 'produkcia').length,
+            agenti: contacts.filter(c => c.type === 'agent').length,
+            naOslovenie: contacts.filter(c => c.status === 'Na oslovenie').length,
+            osloveny: contacts.filter(c => c.status === 'Oslovený').length,
+            zaujem: contacts.filter(c => c.status === 'Záujem o stretnutie').length,
+            vyselJob: contacts.filter(c => c.status === 'Vyšiel job').length,
+        };
 
-            const stats = {
-                total: contacts.length,
-                reziséri: contacts.filter(c => c.type === 'reziser').length,
-                produkcie: contacts.filter(c => c.type === 'produkcia').length,
-                naOslovenie: contacts.filter(c => c.status === 'Na oslovenie').length,
-                osloveny: contacts.filter(c => c.status === 'Oslovený').length,
-                zaujem: contacts.filter(c => c.status === 'Záujem o stretnutie').length,
-            };
-
-            return (
-                <>
-                    <div className="container">
-                        {/* Header */}
-                        <div className="main-header">
-                            <div className="logo">NETWORKING TOOL</div>
-                            <div className="sync-status">
-                                <div className="sync-dot"></div>
-                                SYNC: {syncCode}
-                            </div>
+        return (
+            <>
+                <div className="container">
+                    <div className="main-header">
+                        <div className="logo">NETWORKING TOOL</div>
+                        <div className="sync-status">
+                            <div className="sync-dot"></div>
+                            SYNC: {syncCode}
                         </div>
+                    </div>
 
-                        {/* Goals */}
-                        {goalContacts.length > 0 && (
-                            <div className="goals-section">
-                                <div className="section-title">#GOALS — Dnes oslovo</div>
-                                <div className="goals-grid">
-                                    {goalContacts.map(contact => (
-                                        <div
-                                            key={contact.id}
-                                            className="goal-card"
-                                            onClick={() => setSelectedContact(contact)}
-                                        >
-                                            <div className="goal-type">{contact.type}</div>
-                                            <div className="goal-name">{contact.name}</div>
-                                            <div className="goal-status">{contact.status}</div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-
-                        {/* Stats */}
-                        <div className="stats-grid">
-                            <div className="stat-item">
-                                <div className="stat-number">{stats.total}</div>
-                                <div className="stat-label">Celkom</div>
-                            </div>
-                            <div className="stat-item">
-                                <div className="stat-number">{stats.reziséri}</div>
-                                <div className="stat-label">Režiséri</div>
-                            </div>
-                            <div className="stat-item">
-                                <div className="stat-number">{stats.produkcie}</div>
-                                <div className="stat-label">Produkcie</div>
-                            </div>
-                            <div className="stat-item">
-                                <div className="stat-number">{stats.naOslovenie}</div>
-                                <div className="stat-label">Na oslovenie</div>
-                            </div>
-                            <div className="stat-item">
-                                <div className="stat-number">{stats.osloveny}</div>
-                                <div className="stat-label">Oslovených</div>
-                            </div>
-                            <div className="stat-item">
-                                <div className="stat-number">{stats.zaujem}</div>
-                                <div className="stat-label">Záujem</div>
-                            </div>
-                        </div>
-
-                        {/* Add Buttons */}
-                        <div className="add-section">
-                            <div className="section-title">#ADD</div>
-                            <div className="add-buttons">
-                                <button className="add-btn" onClick={() => { setAddType('reziser'); setShowAddModal(true); }}>
-                                    + Režisér
-                                </button>
-                                <button className="add-btn" onClick={() => { setAddType('produkcia'); setShowAddModal(true); }}>
-                                    + Produkcia
-                                </button>
-                                <button className="add-btn" onClick={() => { setAddType('ine'); setShowAddModal(true); }}>
-                                    + Iné
-                                </button>
-                            </div>
-                        </div>
-
-                        {/* Filters */}
-                        <div className="filters">
-                            <select className="filter-select" value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
-                                <option value="all">Všetky statusy</option>
-                                <option value="Na oslovenie">Na oslovenie</option>
-                                <option value="Oslovený">Oslovený</option>
-                                <option value="Bez odpovede">Bez odpovede</option>
-                                <option value="Záujem o stretnutie">Záujem o stretnutie</option>
-                                <option value="Odmietnutie">Odmietnutie</option>
-                            </select>
-
-                            <select className="filter-select" value={filterType} onChange={(e) => setFilterType(e.target.value)}>
-                                <option value="all">Všetky typy</option>
-                                <option value="reziser">Režiséri</option>
-                                <option value="produkcia">Produkcie</option>
-                                <option value="ine">Iné</option>
-                            </select>
-                        </div>
-
-                        {/* Contacts Grid */}
-                        {filteredContacts.length === 0 ? (
-                            <div className="empty-state">
-                                <div className="empty-state-title">Zatiaľ žiadne kontakty</div>
-                                <p>Pridaj prvý kontakt pomocou tlačidiel vyššie</p>
-                            </div>
-                        ) : (
-                            <div className="contacts-grid">
-                                {filteredContacts.map(contact => (
+                    {goalContacts.length > 0 && (
+                        <div className="goals-section">
+                            <div className="section-title">#GOALS — Dnes skús osloviť</div>
+                            <div className="goals-grid">
+                                {goalContacts.map(contact => (
                                     <div
                                         key={contact.id}
-                                        className="contact-card"
+                                        className="goal-card"
                                         onClick={() => setSelectedContact(contact)}
                                     >
-                                        <div className="contact-type">{contact.type}</div>
-                                        <div className="contact-name">{contact.name}</div>
-                                        <div className="contact-status">{contact.status}</div>
-                                        {contact.datumOslovenia && (
-                                            <div className="contact-date">Oslovený: {contact.datumOslovenia}</div>
-                                        )}
+                                        <div className="goal-type">{contact.type}</div>
+                                        <div className="goal-name">{contact.name}</div>
+                                        <div className="goal-status">{contact.status}</div>
                                     </div>
                                 ))}
                             </div>
+                        </div>
+                    )}
+
+                    <div className="stats-grid">
+                        <div className="stat-item">
+                            <div className="stat-number">{stats.total}</div>
+                            <div className="stat-label">Celkom</div>
+                        </div>
+                        <div className="stat-item">
+                            <div className="stat-number">{stats.reziséri}</div>
+                            <div className="stat-label">Režiséri</div>
+                        </div>
+                        <div className="stat-item">
+                            <div className="stat-number">{stats.produkcie}</div>
+                            <div className="stat-label">Produkcie</div>
+                        </div>
+                        <div className="stat-item">
+                            <div className="stat-number">{stats.agenti}</div>
+                            <div className="stat-label">Agenti</div>
+                        </div>
+                        <div className="stat-item">
+                            <div className="stat-number">{stats.naOslovenie}</div>
+                            <div className="stat-label">Na oslovenie</div>
+                        </div>
+                        <div className="stat-item">
+                            <div className="stat-number">{stats.osloveny}</div>
+                            <div className="stat-label">Oslovených</div>
+                        </div>
+                        <div className="stat-item">
+                            <div className="stat-number">{stats.zaujem}</div>
+                            <div className="stat-label">Záujem</div>
+                        </div>
+                        <div className="stat-item">
+                            <div className="stat-number" style={{color: '#00ff00'}}>{stats.vyselJob}</div>
+                            <div className="stat-label">Vyšiel job 🎉</div>
+                        </div>
+                    </div>
+
+                    <div className="add-section">
+                        <div className="section-title">#ADD</div>
+                        <div className="add-buttons">
+                            <button className="add-btn" onClick={() => { setAddType('reziser'); setShowAddModal(true); }}>
+                                + Režisér
+                            </button>
+                            <button className="add-btn" onClick={() => { setAddType('produkcia'); setShowAddModal(true); }}>
+                                + Produkcia
+                            </button>
+                            <button className="add-btn" onClick={() => { setAddType('agent'); setShowAddModal(true); }}>
+                                + Agent
+                            </button>
+                            <button className="add-btn" onClick={() => { setAddType('ine'); setShowAddModal(true); }}>
+                                + Iné
+                            </button>
+                            <button className="add-btn import-btn" onClick={() => setShowImportModal(true)}>
+                                📥 Import
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="filters">
+                        <select className="filter-select" value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
+                            <option value="all">Všetky statusy</option>
+                            <option value="Na oslovenie">Na oslovenie</option>
+                            <option value="Oslovený">Oslovený</option>
+                            <option value="Bez odpovede">Bez odpovede</option>
+                            <option value="Záujem o stretnutie">Záujem o stretnutie</option>
+                            <option value="Vyšiel job">Vyšiel job 🎉</option>
+                            <option value="Odmietnutie">Odmietnutie</option>
+                        </select>
+
+                        <select className="filter-select" value={filterType} onChange={(e) => setFilterType(e.target.value)}>
+                            <option value="all">Všetky typy</option>
+                            <option value="reziser">Režiséri</option>
+                            <option value="produkcia">Produkcie</option>
+                            <option value="agent">Agenti</option>
+                            <option value="ine">Iné</option>
+                        </select>
+
+                        {countries.length > 0 && (
+                            <select className="filter-select" value={filterCountry} onChange={(e) => setFilterCountry(e.target.value)}>
+                                <option value="all">Všetky krajiny</option>
+                                {countries.map(country => (
+                                    <option key={country} value={country}>{country}</option>
+                                ))}
+                            </select>
                         )}
                     </div>
 
-                    {/* Detail Modal */}
-                    {selectedContact && (
-                        <ContactModal
-                            contact={selectedContact}
-                            onClose={() => setSelectedContact(null)}
-                            onSave={handleUpdateContact}
-                        />
-                    )}
-
-                    {/* Add Modal */}
-                    {showAddModal && (
-                        <AddContactModal
-                            type={addType}
-                            onClose={() => setShowAddModal(false)}
-                            onSave={handleAddContact}
-                        />
-                    )}
-                </>
-            );
-        }
-
-        function ContactModal({ contact, onClose, onSave }) {
-            const [isEditing, setIsEditing] = useState(false);
-            const [edited, setEdited] = useState(contact);
-            const [photo, setPhoto] = useState(contact.photo || null);
-
-            const handlePhotoUpload = (e) => {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onloadend = () => {
-                        setPhoto(reader.result);
-                        setEdited({...edited, photo: reader.result});
-                    };
-                    reader.readAsDataURL(file);
-                }
-            };
-
-            return (
-                <div className="modal-overlay" onClick={onClose}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                        <div className="modal-header">
-                            <div className="modal-name">{contact.name}</div>
-                            <button className="close-btn" onClick={onClose}>×</button>
+                    {filteredContacts.length === 0 ? (
+                        <div className="empty-state">
+                            <div className="empty-state-title">Zatiaľ žiadne kontakty</div>
+                            <p>Pridaj prvý kontakt alebo importuj existujúce dáta</p>
                         </div>
-
-                        <div className="modal-body">
-                            {!isEditing ? (
-                                <>
-                                    {photo && (
-                                        <div className="modal-section">
-                                            <img src={photo} alt={contact.name} style={{maxWidth: '200px', border: '2px solid #fff'}} />
-                                        </div>
+                    ) : (
+                        <div className="contacts-grid">
+                            {filteredContacts.map(contact => (
+                                <div
+                                    key={contact.id}
+                                    className="contact-card"
+                                    onClick={() => setSelectedContact(contact)}
+                                >
+                                    <div className="contact-type">{contact.type}</div>
+                                    <div className="contact-name">{contact.name}</div>
+                                    <div className="contact-status">{contact.status}</div>
+                                    {contact.country && (
+                                        <div className="contact-date">📍 {contact.country}{contact.mesto ? `, ${contact.mesto}` : ''}</div>
                                     )}
-
-                                    <div className="modal-section">
-                                        <div className="modal-label">Typ</div>
-                                        <div className="modal-value">{contact.type}</div>
-                                    </div>
-
-                                    <div className="modal-section">
-                                        <div className="modal-label">Status</div>
-                                        <div className="modal-value">{contact.status}</div>
-                                    </div>
-
-                                    <div className="modal-section">
-                                        <div className="modal-label">Kontakt</div>
-                                        <div className="contact-links">
-                                            {contact.web && <a href={contact.web} target="_blank" className="contact-link">Web</a>}
-                                            {contact.email && <a href={`mailto:${contact.email}`} className="contact-link">Email</a>}
-                                            {contact.instagram && <a href={contact.instagramUrl} target="_blank" className="contact-link">Instagram</a>}
-                                            {contact.vimeo && <a href={contact.vimeo} target="_blank" className="contact-link">Vimeo</a>}
-                                            {contact.phone && <div className="contact-link">{contact.phone}</div>}
-                                        </div>
-                                    </div>
-
-                                    {contact.bio && (
-                                        <div className="modal-section">
-                                            <div className="modal-label">Bio</div>
-                                            <div className="modal-value">{contact.bio}</div>
-                                        </div>
-                                    )}
-
-                                    {contact.vztah && (
-                                        <div className="modal-section">
-                                            <div className="modal-label">Vzťah</div>
-                                            <div className="modal-value">{contact.vztah}</div>
-                                        </div>
-                                    )}
-
                                     {contact.datumOslovenia && (
-                                        <div className="modal-section">
-                                            <div className="modal-label">Dátum oslovenia</div>
-                                            <div className="modal-value">{contact.datumOslovenia}</div>
-                                        </div>
+                                        <div className="contact-date">Oslovený: {contact.datumOslovenia}</div>
                                     )}
-
-                                    {contact.platforma && (
-                                        <div className="modal-section">
-                                            <div className="modal-label">Platforma komunikácie</div>
-                                            <div className="modal-value">{contact.platforma}</div>
-                                        </div>
-                                    )}
-
-                                    {contact.konverzacia && (
-                                        <div className="modal-section">
-                                            <div className="modal-label">Záznam konverzácie</div>
-                                            <div className="modal-value">{contact.konverzacia}</div>
-                                        </div>
-                                    )}
-
-                                    {contact.poznamky && (
-                                        <div className="modal-section">
-                                            <div className="modal-label">Poznámky</div>
-                                            <div className="modal-value">{contact.poznamky}</div>
-                                        </div>
-                                    )}
-
-                                    <div className="button-row">
-                                        <button className="button" onClick={() => setIsEditing(true)}>Upraviť</button>
-                                    </div>
-                                </>
-                            ) : (
-                                <ContactForm
-                                    contact={edited}
-                                    onChange={setEdited}
-                                    onSave={() => { onSave(edited); setIsEditing(false); }}
-                                    onCancel={() => setIsEditing(false)}
-                                    onPhotoUpload={handlePhotoUpload}
-                                    photo={photo}
-                                />
-                            )}
+                                </div>
+                            ))}
                         </div>
-                    </div>
+                    )}
                 </div>
-            );
-        }
 
-        function AddContactModal({ type, onClose, onSave }) {
-            const [newContact, setNewContact] = useState({
-                name: '',
-                type: type,
-                status: 'Na oslovenie',
-                web: '',
-                email: '',
-                instagram: '',
-                instagramUrl: '',
-                vimeo: '',
-                phone: '',
-                bio: '',
-                vztah: '',
-                datumOslovenia: '',
-                platforma: '',
-                konverzacia: '',
-                poznamky: '',
-                photo: null
-            });
+                {selectedContact && (
+                    <ContactModal
+                        contact={selectedContact}
+                        onClose={() => setSelectedContact(null)}
+                        onSave={handleUpdateContact}
+                    />
+                )}
 
-            const [photo, setPhoto] = useState(null);
+                {showAddModal && (
+                    <AddContactModal
+                        type={addType}
+                        onClose={() => setShowAddModal(false)}
+                        onSave={handleAddContact}
+                    />
+                )}
 
-            const handlePhotoUpload = (e) => {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onloadend = () => {
-                        setPhoto(reader.result);
-                        setNewContact({...newContact, photo: reader.result});
-                    };
-                    reader.readAsDataURL(file);
-                }
-            };
+                {showImportModal && (
+                    <ImportModal
+                        onClose={() => setShowImportModal(false)}
+                        onImport={handleImport}
+                    />
+                )}
+            </>
+        );
+    }
 
-            return (
-                <div className="modal-overlay" onClick={onClose}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                        <div className="modal-header">
-                            <div className="modal-name">Pridať {type === 'reziser' ? 'Režiséra' : type === 'produkcia' ? 'Produkciu' : 'Kontakt'}</div>
-                            <button className="close-btn" onClick={onClose}>×</button>
-                        </div>
-                        <div className="modal-body">
-                            <ContactForm
-                                contact={newContact}
-                                onChange={setNewContact}
-                                onSave={() => onSave(newContact)}
-                                onCancel={onClose}
-                                onPhotoUpload={handlePhotoUpload}
-                                photo={photo}
-                                isNew={true}
-                            />
-                        </div>
+    function ImportModal({ onClose, onImport }) {
+        const [importText, setImportText] = useState('');
+
+        const handleFileUpload = (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    setImportText(event.target.result);
+                };
+                reader.readAsText(file);
+            }
+        };
+
+        return (
+            <div className="modal-overlay" onClick={onClose}>
+                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                    <div className="modal-header">
+                        <div className="modal-name">Import kontaktov</div>
+                        <button className="close-btn" onClick={onClose}>×</button>
                     </div>
-                </div>
-            );
-        }
-
-        function ContactForm({ contact, onChange, onSave, onCancel, onPhotoUpload, photo, isNew }) {
-            return (
-                <>
-                    <div className="modal-section">
-                        <div className="modal-label">Fotka (voliteľné)</div>
+                    <div className="modal-body">
                         <input
                             type="file"
-                            accept="image/*"
-                            onChange={onPhotoUpload}
+                            accept=".json"
+                            onChange={handleFileUpload}
                             style={{display: 'none'}}
-                            id="photo-upload"
+                            id="file-upload"
                         />
-                        <label htmlFor="photo-upload" className="photo-upload">
-                            {photo ? (
-                                <img src={photo} alt="Preview" className="photo-preview" />
-                            ) : (
-                                <div style={{fontSize: '32px'}}>+</div>
-                            )}
+                        <label htmlFor="file-upload" className="import-zone">
+                            <div className="import-zone-title">📁 Vyber JSON súbor</div>
+                            <div className="import-zone-text">alebo vlož JSON dole ↓</div>
                         </label>
+
+                        <textarea
+                            className="input-field"
+                            placeholder='{"contacts": [...]} - vlož JSON obsah tu'
+                            value={importText}
+                            onChange={(e) => setImportText(e.target.value)}
+                            rows="10"
+                        />
+
+                        <div className="button-row">
+                            <button className="button" onClick={() => onImport(importText)}>
+                                Importovať
+                            </button>
+                            <button className="button button-secondary" onClick={onClose}>
+                                Zrušiť
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    function ContactModal({ contact, onClose, onSave }) {
+        const [isEditing, setIsEditing] = useState(false);
+        const [edited, setEdited] = useState(contact);
+        const [photo, setPhoto] = useState(contact.photo || null);
+
+        const handlePhotoUpload = (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    setPhoto(reader.result);
+                    setEdited({...edited, photo: reader.result});
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+
+        return (
+            <div className="modal-overlay" onClick={onClose}>
+                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                    <div className="modal-header">
+                        <div className="modal-name">{contact.name}</div>
+                        <button className="close-btn" onClick={onClose}>×</button>
                     </div>
 
+                    <div className="modal-body">
+                        {!isEditing ? (
+                            <>
+                                {photo && (
+                                    <div className="modal-section">
+                                        <img src={photo} alt={contact.name} style={{maxWidth: '200px', border: '2px solid #fff'}} />
+                                    </div>
+                                )}
+
+                                <div className="modal-section">
+                                    <div className="modal-label">Typ</div>
+                                    <div className="modal-value">{contact.type}</div>
+                                </div>
+
+                                <div className="modal-section">
+                                    <div className="modal-label">Status</div>
+                                    <div className="modal-value">{contact.status}</div>
+                                </div>
+
+                                {(contact.country || contact.mesto) && (
+                                    <div className="modal-section">
+                                        <div className="modal-label">Lokácia</div>
+                                        <div className="modal-value">
+                                            {contact.country}{contact.mesto ? `, ${contact.mesto}` : ''}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {contact.kontaktna_osoba && (
+                                    <div className="modal-section">
+                                        <div className="modal-label">Kontaktná osoba</div>
+                                        <div className="modal-value">{contact.kontaktna_osoba}</div>
+                                    </div>
+                                )}
+
+                                <div className="modal-section">
+                                    <div className="modal-label">Kontakt</div>
+                                    <div className="contact-links">
+                                        {contact.web && <a href={contact.web} target="_blank" className="contact-link">Web</a>}
+                                        {contact.email && <a href={`mailto:${contact.email}`} className="contact-link">Email</a>}
+                                        {contact.instagram && <a href={contact.instagramUrl || `https://www.instagram.com/${contact.instagram}/`} target="_blank" className="contact-link">Instagram</a>}
+                                        {contact.vimeo && <a href={contact.vimeo} target="_blank" className="contact-link">Vimeo</a>}
+                                        {contact.phone && <div className="contact-link">{contact.phone}</div>}
+                                    </div>
+                                </div>
+
+                                {contact.bio && (
+                                    <div className="modal-section">
+                                        <div className="modal-label">Bio</div>
+                                        <div className="modal-value">{contact.bio}</div>
+                                    </div>
+                                )}
+
+                                {contact.vztah && (
+                                    <div className="modal-section">
+                                        <div className="modal-label">Vzťah</div>
+                                        <div className="modal-value">{contact.vztah}</div>
+                                    </div>
+                                )}
+
+                                {contact.datumOslovenia && (
+                                    <div className="modal-section">
+                                        <div className="modal-label">Dátum oslovenia</div>
+                                        <div className="modal-value">{contact.datumOslovenia}</div>
+                                    </div>
+                                )}
+
+                                {contact.platforma && (
+                                    <div className="modal-section">
+                                        <div className="modal-label">Platforma komunikácie</div>
+                                        <div className="modal-value">{contact.platforma}</div>
+                                    </div>
+                                )}
+
+                                {contact.konverzacia && (
+                                    <div className="modal-section">
+                                        <div className="modal-label">Záznam konverzácie</div>
+                                        <div className="modal-value">{contact.konverzacia}</div>
+                                    </div>
+                                )}
+
+                                {contact.poznamky && (
+                                    <div className="modal-section">
+                                        <div className="modal-label">Poznámky</div>
+                                        <div className="modal-value">{contact.poznamky}</div>
+                                    </div>
+                                )}
+
+                                <div className="button-row">
+                                    <button className="button" onClick={() => setIsEditing(true)}>Upraviť</button>
+                                </div>
+                            </>
+                        ) : (
+                            <ContactForm
+                                contact={edited}
+                                onChange={setEdited}
+                                onSave={() => { onSave(edited); setIsEditing(false); }}
+                                onCancel={() => setIsEditing(false)}
+                                onPhotoUpload={handlePhotoUpload}
+                                photo={photo}
+                            />
+                        )}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    function AddContactModal({ type, onClose, onSave }) {
+        const [newContact, setNewContact] = useState({
+            name: '',
+            type: type,
+            status: 'Na oslovenie',
+            web: '',
+            email: '',
+            instagram: '',
+            instagramUrl: '',
+            vimeo: '',
+            phone: '',
+            bio: '',
+            vztah: '',
+            country: '',
+            mesto: '',
+            kontaktna_osoba: '',
+            datumOslovenia: '',
+            platforma: '',
+            konverzacia: '',
+            poznamky: '',
+            photo: null
+        });
+
+        const [photo, setPhoto] = useState(null);
+
+        const handlePhotoUpload = (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    setPhoto(reader.result);
+                    setNewContact({...newContact, photo: reader.result});
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+
+        return (
+            <div className="modal-overlay" onClick={onClose}>
+                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                    <div className="modal-header">
+                        <div className="modal-name">Pridať {
+                            type === 'reziser' ? 'Režiséra' : 
+                            type === 'produkcia' ? 'Produkciu' : 
+                            type === 'agent' ? 'Agenta' : 'Kontakt'
+                        }</div>
+                        <button className="close-btn" onClick={onClose}>×</button>
+                    </div>
+                    <div className="modal-body">
+                        <ContactForm
+                            contact={newContact}
+                            onChange={setNewContact}
+                            onSave={() => onSave(newContact)}
+                            onCancel={onClose}
+                            onPhotoUpload={handlePhotoUpload}
+                            photo={photo}
+                            isNew={true}
+                        />
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    function ContactForm({ contact, onChange, onSave, onCancel, onPhotoUpload, photo, isNew }) {
+        const [customCountry, setCustomCountry] = useState('');
+        
+        const showKontaktnaOsoba = contact.type === 'produkcia' || contact.type === 'agent';
+
+        return (
+            <>
+                <div className="modal-section">
+                    <div className="modal-label">Fotka (voliteľné)</div>
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={onPhotoUpload}
+                        style={{display: 'none'}}
+                        id="photo-upload"
+                    />
+                    <label htmlFor="photo-upload" className="photo-upload">
+                        {photo ? (
+                            <img src={photo} alt="Preview" className="photo-preview" />
+                        ) : (
+                            <div style={{fontSize: '32px'}}>+</div>
+                        )}
+                    </label>
+                </div>
+
+                <input
+                    type="text"
+                    className="input-field"
+                    placeholder="Meno *"
+                    value={contact.name}
+                    onChange={(e) => onChange({...contact, name: e.target.value})}
+                />
+
+                <select
+                    className="input-field"
+                    value={contact.status}
+                    onChange={(e) => onChange({...contact, status: e.target.value})}
+                >
+                    <option value="Na oslovenie">Na oslovenie</option>
+                    <option value="Oslovený">Oslovený</option>
+                    <option value="Bez odpovede">Bez odpovede</option>
+                    <option value="Záujem o stretnutie">Záujem o stretnutie</option>
+                    <option value="Vyšiel job">Vyšiel job 🎉</option>
+                    <option value="Odmietnutie">Odmietnutie</option>
+                </select>
+
+                <div className="form-row">
+                    <div className="form-group">
+                        <input
+                            type="text"
+                            list="countries-list"
+                            className="input-field"
+                            placeholder="Krajina"
+                            value={contact.country}
+                            onChange={(e) => onChange({...contact, country: e.target.value})}
+                        />
+                        <datalist id="countries-list">
+                            {COUNTRIES.map(country => (
+                                <option key={country} value={country} />
+                            ))}
+                        </datalist>
+                    </div>
+                    <div className="form-group">
+                        <input
+                            type="text"
+                            className="input-field"
+                            placeholder="Mesto"
+                            value={contact.mesto}
+                            onChange={(e) => onChange({...contact, mesto: e.target.value})}
+                        />
+                    </div>
+                </div>
+
+                {showKontaktnaOsoba && (
                     <input
                         type="text"
                         className="input-field"
-                        placeholder="Meno *"
-                        value={contact.name}
-                        onChange={(e) => onChange({...contact, name: e.target.value})}
+                        placeholder="Kontaktná osoba"
+                        value={contact.kontaktna_osoba}
+                        onChange={(e) => onChange({...contact, kontaktna_osoba: e.target.value})}
                     />
+                )}
 
-                    <select
-                        className="input-field"
-                        value={contact.status}
-                        onChange={(e) => onChange({...contact, status: e.target.value})}
-                    >
-                        <option value="Na oslovenie">Na oslovenie</option>
-                        <option value="Oslovený">Oslovený</option>
-                        <option value="Bez odpovede">Bez odpovede</option>
-                        <option value="Záujem o stretnutie">Záujem o stretnutie</option>
-                        <option value="Odmietnutie">Odmietnutie</option>
-                    </select>
-
-                    <div className="form-row">
+                <div className="form-row">
+                    <div className="form-group">
                         <input
                             type="url"
                             className="input-field"
@@ -1003,6 +1231,8 @@
                             value={contact.web}
                             onChange={(e) => onChange({...contact, web: e.target.value})}
                         />
+                    </div>
+                    <div className="form-group">
                         <input
                             type="email"
                             className="input-field"
@@ -1011,8 +1241,10 @@
                             onChange={(e) => onChange({...contact, email: e.target.value})}
                         />
                     </div>
+                </div>
 
-                    <div className="form-row">
+                <div className="form-row">
+                    <div className="form-group">
                         <input
                             type="text"
                             className="input-field"
@@ -1027,6 +1259,8 @@
                                 });
                             }}
                         />
+                    </div>
+                    <div className="form-group">
                         <input
                             type="url"
                             className="input-field"
@@ -1035,72 +1269,75 @@
                             onChange={(e) => onChange({...contact, vimeo: e.target.value})}
                         />
                     </div>
+                </div>
 
-                    <input
-                        type="tel"
-                        className="input-field"
-                        placeholder="Telefón"
-                        value={contact.phone}
-                        onChange={(e) => onChange({...contact, phone: e.target.value})}
-                    />
+                <input
+                    type="tel"
+                    className="input-field"
+                    placeholder="Telefón"
+                    value={contact.phone}
+                    onChange={(e) => onChange({...contact, phone: e.target.value})}
+                />
 
-                    <input
-                        type="date"
-                        className="input-field"
-                        placeholder="Dátum oslovenia"
-                        value={contact.datumOslovenia}
-                        onChange={(e) => onChange({...contact, datumOslovenia: e.target.value})}
-                    />
+                <input
+                    type="date"
+                    className="input-field"
+                    placeholder="Dátum oslovenia"
+                    value={contact.datumOslovenia}
+                    onChange={(e) => onChange({...contact, datumOslovenia: e.target.value})}
+                />
 
-                    <input
-                        type="text"
-                        className="input-field"
-                        placeholder="Platforma komunikácie (napr. Instagram DM, Email...)"
-                        value={contact.platforma}
-                        onChange={(e) => onChange({...contact, platforma: e.target.value})}
-                    />
+                <input
+                    type="text"
+                    className="input-field"
+                    placeholder="Platforma komunikácie (napr. Instagram DM, Email...)"
+                    value={contact.platforma}
+                    onChange={(e) => onChange({...contact, platforma: e.target.value})}
+                />
 
-                    <textarea
-                        className="input-field"
-                        placeholder="Bio"
-                        value={contact.bio}
-                        onChange={(e) => onChange({...contact, bio: e.target.value})}
-                    />
+                <textarea
+                    className="input-field"
+                    placeholder="Bio"
+                    value={contact.bio}
+                    onChange={(e) => onChange({...contact, bio: e.target.value})}
+                />
 
-                    <textarea
-                        className="input-field"
-                        placeholder="Vzťah"
-                        value={contact.vztah}
-                        onChange={(e) => onChange({...contact, vztah: e.target.value})}
-                    />
+                <textarea
+                    className="input-field"
+                    placeholder="Vzťah"
+                    value={contact.vztah}
+                    onChange={(e) => onChange({...contact, vztah: e.target.value})}
+                />
 
-                    <textarea
-                        className="input-field"
-                        placeholder="Záznam konverzácie"
-                        value={contact.konverzacia}
-                        onChange={(e) => onChange({...contact, konverzacia: e.target.value})}
-                    />
+                <textarea
+                    className="input-field"
+                    placeholder="Záznam konverzácie"
+                    value={contact.konverzacia}
+                    onChange={(e) => onChange({...contact, konverzacia: e.target.value})}
+                />
 
-                    <textarea
-                        className="input-field"
-                        placeholder="Poznámky"
-                        value={contact.poznamky}
-                        onChange={(e) => onChange({...contact, poznamky: e.target.value})}
-                    />
+                <textarea
+                    className="input-field"
+                    placeholder="Poznámky"
+                    value={contact.poznamky}
+                    onChange={(e) => onChange({...contact, poznamky: e.target.value})}
+                />
 
-                    <div className="button-row">
-                        <button className="button" onClick={onSave}>
-                            {isNew ? 'Pridať' : 'Uložiť'}
-                        </button>
-                        <button className="button button-secondary" onClick={onCancel}>
-                            Zrušiť
-                        </button>
-                    </div>
-                </>
-            );
-        }
+                <div className="button-row">
+                    <button className="button" onClick={onSave}>
+                        {isNew ? 'Pridať' : 'Uložiť'}
+                    </button>
+                    <button className="button button-secondary" onClick={onCancel}>
+                        Zrušiť
+                    </button>
+                </div>
+            </>
+        );
+    }
 
-        ReactDOM.render(<App />, document.getElementById('root'));
-    </script>
+    ReactDOM.render(<App />, document.getElementById('root'));
+</script>
+```
+
 </body>
 </html>
