@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Režiséri / Directors</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>NETWORKING TOOL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,63 +13,58 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #fafafa;
-            color: #1a1a1a;
-            line-height: 1.6;
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.4;
+            overflow-x: hidden;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 60px 40px;
+            padding: 40px 24px;
         }
 
-        .header {
-            margin-bottom: 80px;
+        /* Header */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #ffffff;
         }
 
-        .title {
-            font-size: 14px;
-            font-weight: 400;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-            color: #666;
-        }
-
-        .subtitle {
+        .logo {
             font-size: 32px;
-            font-weight: 300;
-            color: #1a1a1a;
+            font-weight: 700;
+            letter-spacing: -1px;
         }
 
-        .sync-badge {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: white;
-            border: 1px solid #e0e0e0;
-            padding: 12px 20px;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            transition: all 0.2s;
+        .sync-status {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            padding: 8px 16px;
+            border: 1px solid #ffffff;
+            transition: all 0.2s;
         }
 
-        .sync-badge:hover {
-            background: #fafafa;
+        .sync-status:hover {
+            background: #ffffff;
+            color: #0a0a0a;
         }
 
-        .sync-indicator {
+        .sync-dot {
             width: 8px;
             height: 8px;
+            background: #00ff00;
             border-radius: 50%;
-            background: #22c55e;
             animation: pulse 2s infinite;
         }
 
@@ -78,328 +73,464 @@
             50% { opacity: 0.5; }
         }
 
-        .sync-indicator.offline {
-            background: #ef4444;
-            animation: none;
+        /* Goals Section */
+        .goals-section {
+            margin-bottom: 80px;
         }
 
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            color: #888;
+        }
+
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2px;
+            background: #ffffff;
+        }
+
+        .goal-card {
+            background: #0a0a0a;
+            padding: 32px;
+            border: 2px solid #ffffff;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .goal-card:hover {
+            background: #ffffff;
+            color: #0a0a0a;
+        }
+
+        .goal-card:hover .goal-status {
+            color: #0a0a0a;
+        }
+
+        .goal-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .goal-status {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+        }
+
+        .goal-type {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 10px;
+            padding: 4px 8px;
+            background: #ffffff;
+            color: #0a0a0a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Stats */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 100px;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2px;
+            background: #ffffff;
+            margin-bottom: 60px;
         }
 
         .stat-item {
+            background: #0a0a0a;
+            padding: 32px;
             text-align: center;
+            border: 2px solid #ffffff;
         }
 
         .stat-number {
-            font-size: 72px;
-            font-weight: 300;
-            color: #1a1a1a;
+            font-size: 56px;
+            font-weight: 700;
             line-height: 1;
+            margin-bottom: 12px;
         }
 
         .stat-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #888;
+        }
+
+        /* Add Buttons */
+        .add-section {
+            margin-bottom: 60px;
+        }
+
+        .add-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .add-btn {
+            padding: 16px 32px;
+            background: #ffffff;
+            color: #0a0a0a;
+            border: none;
             font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .add-btn:hover {
+            background: #00ff00;
+            transform: translateY(-2px);
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 12px 20px;
+            background: transparent;
+            border: 2px solid #ffffff;
+            color: #ffffff;
+            font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #999;
-            margin-top: 12px;
+            cursor: pointer;
+            font-family: inherit;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='white' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            padding-right: 40px;
         }
 
-        .director-list {
+        .filter-select:focus {
+            outline: none;
+            background-color: #ffffff;
+            color: #0a0a0a;
+        }
+
+        /* Contact Grid */
+        .contacts-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1px;
-            background: #e0e0e0;
-            border: 1px solid #e0e0e0;
+            gap: 2px;
+            background: #ffffff;
         }
 
-        .director-item {
-            background: white;
+        .contact-card {
+            background: #0a0a0a;
             padding: 24px;
+            border: 2px solid #ffffff;
             cursor: pointer;
             transition: all 0.2s;
             position: relative;
         }
 
-        .director-item:hover {
-            background: #fafafa;
+        .contact-card:hover {
+            background: #ffffff;
+            color: #0a0a0a;
             transform: scale(1.02);
             z-index: 10;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
 
-        .director-name {
-            font-size: 16px;
-            font-weight: 500;
-            color: #1a1a1a;
+        .contact-card:hover .contact-status,
+        .contact-card:hover .contact-type,
+        .contact-card:hover .contact-date {
+            color: #0a0a0a;
+        }
+
+        .contact-name {
+            font-size: 18px;
+            font-weight: 700;
             margin-bottom: 8px;
         }
 
-        .director-status {
-            font-size: 11px;
+        .contact-status {
+            font-size: 10px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #999;
+            letter-spacing: 1px;
+            color: #888;
+            margin-bottom: 4px;
         }
 
-        .director-meta {
-            font-size: 11px;
-            color: #ccc;
-            margin-top: 16px;
+        .contact-type {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 9px;
+            padding: 3px 6px;
+            background: #ffffff;
+            color: #0a0a0a;
+            text-transform: uppercase;
         }
 
+        .contact-date {
+            font-size: 9px;
+            color: #666;
+            margin-top: 12px;
+        }
+
+        /* Modal */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(10, 10, 10, 0.98);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 1000;
-            padding: 40px;
-            animation: fadeIn 0.2s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            padding: 20px;
+            overflow-y: auto;
         }
 
         .modal-content {
-            background: white;
-            max-width: 800px;
+            background: #0a0a0a;
+            border: 3px solid #ffffff;
+            max-width: 900px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
-            border: 1px solid #e0e0e0;
-            position: relative;
         }
 
         .modal-header {
             padding: 40px;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 2px solid #ffffff;
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
+        }
+
+        .modal-name {
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .close-btn {
+            font-size: 32px;
+            background: none;
+            border: none;
+            color: #ffffff;
+            cursor: pointer;
+            line-height: 1;
+            transition: transform 0.2s;
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
         }
 
         .modal-body {
             padding: 40px;
         }
 
-        .close-button {
-            font-size: 24px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #999;
-            transition: color 0.2s;
-            line-height: 1;
-        }
-
-        .close-button:hover {
-            color: #1a1a1a;
-        }
-
-        .detail-section {
+        .modal-section {
             margin-bottom: 40px;
         }
 
-        .detail-label {
+        .modal-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #888;
+            margin-bottom: 12px;
+        }
+
+        .modal-value {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .modal-value a {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .modal-value a:hover {
+            color: #00ff00;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid #ffffff;
+            color: #ffffff;
+            text-decoration: none;
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #999;
-            margin-bottom: 8px;
+            transition: all 0.2s;
         }
 
-        .detail-value {
-            font-size: 16px;
-            color: #1a1a1a;
+        .contact-link:hover {
+            background: #ffffff;
+            color: #0a0a0a;
         }
 
-        .detail-value a {
-            color: #1a1a1a;
-            text-decoration: underline;
-            text-decoration-color: #e0e0e0;
-            transition: text-decoration-color 0.2s;
-        }
-
-        .detail-value a:hover {
-            text-decoration-color: #1a1a1a;
-        }
-
-        .bio-text {
-            font-size: 16px;
-            line-height: 1.8;
-            color: #666;
-        }
-
+        /* Form Elements */
         .input-field {
             width: 100%;
-            padding: 12px 0;
-            border: none;
-            border-bottom: 1px solid #e0e0e0;
-            font-size: 16px;
-            font-family: inherit;
+            padding: 16px;
             background: transparent;
-            transition: border-color 0.2s;
+            border: 2px solid #ffffff;
+            color: #ffffff;
+            font-size: 14px;
+            font-family: inherit;
+            margin-bottom: 20px;
         }
 
         .input-field:focus {
             outline: none;
-            border-bottom-color: #1a1a1a;
+            background: #ffffff;
+            color: #0a0a0a;
         }
 
         textarea.input-field {
+            min-height: 120px;
             resize: vertical;
-            min-height: 100px;
-            border: 1px solid #e0e0e0;
-            padding: 12px;
         }
 
-        textarea.input-field:focus {
-            border-color: #1a1a1a;
-        }
-
-        .button {
-            padding: 16px 32px;
-            background: #1a1a1a;
-            color: white;
-            border: none;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        select.input-field {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='white' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            padding-right: 40px;
             cursor: pointer;
-            transition: all 0.2s;
-            font-family: inherit;
-            font-weight: 500;
-        }
-
-        .button:hover {
-            background: #000;
-        }
-
-        .button-secondary {
-            background: white;
-            color: #1a1a1a;
-            border: 1px solid #e0e0e0;
-        }
-
-        .button-secondary:hover {
-            background: #fafafa;
-            border-color: #1a1a1a;
         }
 
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin-bottom: 24px;
+            gap: 20px;
         }
 
-        .form-group {
-            margin-bottom: 24px;
+        .button {
+            padding: 16px 32px;
+            background: #ffffff;
+            color: #0a0a0a;
+            border: none;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .button:hover {
+            background: #00ff00;
+        }
+
+        .button-secondary {
+            background: transparent;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+        }
+
+        .button-secondary:hover {
+            background: #ffffff;
+            color: #0a0a0a;
         }
 
         .button-row {
             display: flex;
-            gap: 16px;
+            gap: 12px;
             margin-top: 40px;
         }
 
-        .add-button {
-            position: fixed;
-            bottom: 40px;
-            right: 40px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: #1a1a1a;
-            color: white;
-            border: none;
-            font-size: 28px;
-            cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        .photo-upload {
+            width: 120px;
+            height: 120px;
+            border: 2px dashed #ffffff;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .add-button:hover {
-            background: #000;
-            transform: scale(1.1);
-        }
-
-        select.input-field {
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 8px center;
-            background-size: 16px;
-            padding-right: 32px;
             cursor: pointer;
-        }
-
-        .sync-code-display {
-            background: #f5f5f5;
-            padding: 20px;
-            border: 2px dashed #e0e0e0;
-            text-align: center;
             margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .sync-code {
-            font-size: 24px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            color: #1a1a1a;
-            font-family: 'Courier New', monospace;
+        .photo-upload:hover {
+            border-color: #00ff00;
         }
 
-        .info-box {
-            background: #f8f9fa;
-            border-left: 3px solid #1a1a1a;
-            padding: 16px;
-            margin: 20px 0;
-            font-size: 14px;
+        .photo-preview {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
             color: #666;
         }
 
+        .empty-state-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
         @media (max-width: 768px) {
-            .container {
-                padding: 40px 24px;
+            .logo {
+                font-size: 24px;
             }
-            
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 24px;
-            }
-            
+
             .stat-number {
-                font-size: 48px;
+                font-size: 40px;
             }
-            
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .director-list {
+
+            .goals-grid,
+            .contacts-grid {
                 grid-template-columns: 1fr;
             }
 
-            .sync-badge {
-                top: 10px;
-                right: 10px;
-                padding: 8px 12px;
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-name {
+                font-size: 28px;
+            }
+
+            .filters {
+                flex-direction: column;
+            }
+
+            .filter-select {
+                width: 100%;
             }
         }
     </style>
@@ -410,9 +541,8 @@
     <!-- Firebase SDK -->
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-        import { getFirestore, collection, doc, setDoc, getDoc, onSnapshot, deleteDoc, query, orderBy } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+        import { getFirestore, collection, doc, setDoc, getDoc, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
-        // Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyBhSYOBggjEbYkg5Qu-Zfih4BSoPWiXSqc",
             authDomain: "reach-out-networking-tool.firebaseapp.com",
@@ -422,13 +552,11 @@
             appId: "1:1052787828053:web:c0e1fae472864df17d7bdc"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // Make Firebase available globally
         window.firebaseDB = db;
-        window.firestoreModules = { collection, doc, setDoc, getDoc, onSnapshot, deleteDoc, query, orderBy };
+        window.firestoreModules = { collection, doc, setDoc, getDoc, onSnapshot };
     </script>
 
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
@@ -437,442 +565,331 @@
 
     <script type="text/babel">
         const { useState, useEffect } = React;
-        const { collection, doc, setDoc, getDoc, onSnapshot, deleteDoc } = window.firestoreModules;
+        const { doc, setDoc, getDoc, onSnapshot } = window.firestoreModules;
         const db = window.firebaseDB;
 
-        // Generate unique sync code
-        function generateSyncCode() {
-            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-            let code = 'REZIS-';
-            for (let i = 0; i < 4; i++) {
-                code += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            return code;
-        }
+        function App() {
+            const [contacts, setContacts] = useState([]);
+            const [selectedContact, setSelectedContact] = useState(null);
+            const [showAddModal, setShowAddModal] = useState(false);
+            const [addType, setAddType] = useState('reziser');
+            const [filterStatus, setFilterStatus] = useState('all');
+            const [filterType, setFilterType] = useState('all');
+            const syncCode = 'REZIS-R7YE'; // Your sync code
 
-        const initialDirectors = [
-            {
-                id: 1,
-                name: "Marie Magdaléna Kochová",
-                instagram: "mariemagdalena_kochova",
-                instagramUrl: "https://www.instagram.com/mariemagdalena_kochova/",
-                email: "",
-                phone: "",
-                vztah: "Odporúčanie od Vítka",
-                status: "Na oslovenie",
-                datumOslovenia: "",
-                poslednaKomunikacia: "",
-                poznamky: "Absolventka FAMU - dokumentárna režie.",
-                bio: "Česká režisérka žijúca v Prahe. Vyštudovala Dokumentárnu režiu na FAMU."
-            }
-        ];
-
-        function SyncSetup({ onSetupComplete }) {
-            const [syncCode, setSyncCode] = useState('');
-            const [newCode, setNewCode] = useState('');
-            const [mode, setMode] = useState('choose'); // 'choose', 'new', 'existing'
-
+            // Listen to Firebase
             useEffect(() => {
-                const saved = localStorage.getItem('syncCode');
-                if (saved) {
-                    onSetupComplete(saved);
-                }
-            }, []);
-
-            const handleCreateNew = () => {
-                const code = generateSyncCode();
-                setNewCode(code);
-                setMode('new');
-            };
-
-            const handleUseNew = async () => {
-                localStorage.setItem('syncCode', newCode);
-                // Initialize with default directors
-                try {
-                    const directorsRef = doc(db, 'workspaces', newCode);
-                    await setDoc(directorsRef, {
-                        directors: initialDirectors,
-                        createdAt: new Date().toISOString()
-                    });
-                    onSetupComplete(newCode);
-                } catch (error) {
-                    console.error('Error creating workspace:', error);
-                    alert('Chyba pri vytváraní workspace. Skúste to znova.');
-                }
-            };
-
-            const handleUseExisting = async () => {
-                const code = syncCode.toUpperCase().trim();
-                if (code.length < 5) {
-                    alert('Zadajte platný sync kód');
-                    return;
-                }
-
-                try {
-                    const directorsRef = doc(db, 'workspaces', code);
-                    const snapshot = await getDoc(directorsRef);
-                    
+                const contactsRef = doc(db, 'workspaces', syncCode);
+                const unsubscribe = onSnapshot(contactsRef, (snapshot) => {
                     if (snapshot.exists()) {
-                        localStorage.setItem('syncCode', code);
-                        onSetupComplete(code);
-                    } else {
-                        alert('Tento kód neexistuje. Skontrolujte ho a skúste znova.');
+                        setContacts(snapshot.data().contacts || []);
                     }
+                });
+                return () => unsubscribe();
+            }, []);
+
+            const saveToFirebase = async (updatedContacts) => {
+                try {
+                    const contactsRef = doc(db, 'workspaces', syncCode);
+                    await setDoc(contactsRef, {
+                        contacts: updatedContacts,
+                        updatedAt: new Date().toISOString()
+                    }, { merge: true });
                 } catch (error) {
-                    console.error('Error checking code:', error);
-                    alert('Chyba pri overovaní kódu. Skontrolujte internetové pripojenie.');
+                    console.error('Error:', error);
                 }
             };
 
-            return (
-                <div className="container">
-                    <div className="header">
-                        <div className="title">Synchronizácia</div>
-                        <div className="subtitle">Nastavenie zariadenia</div>
-                    </div>
-
-                    {mode === 'choose' && (
-                        <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-                            <div className="info-box">
-                                Synchronizuj svoje dáta medzi zariadeniami pomocou jedinečného kódu. 
-                                Všetky zariadenia s rovnakým kódom budú mať prístup k rovnakým dátam.
-                            </div>
-
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '40px' }}>
-                                <button className="button" onClick={handleCreateNew}>
-                                    Vytvoriť nový workspace
-                                </button>
-                                <button className="button button-secondary" onClick={() => setMode('existing')}>
-                                    Mám už sync kód
-                                </button>
-                            </div>
-                        </div>
-                    )}
-
-                    {mode === 'new' && (
-                        <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-                            <div className="sync-code-display">
-                                <div className="detail-label">Tvoj sync kód</div>
-                                <div className="sync-code">{newCode}</div>
-                            </div>
-
-                            <div className="info-box">
-                                <strong>Dôležité:</strong> Ulož si tento kód! Budeš ho potrebovať na pridanie ďalších zariadení.
-                                Zadaj ho na svojom mobile alebo druhom počítači aby si mal prístup k rovnakým dátam.
-                            </div>
-
-                            <div style={{ display: 'flex', gap: '16px', marginTop: '40px' }}>
-                                <button className="button" onClick={handleUseNew}>
-                                    Pokračovať s týmto kódom
-                                </button>
-                                <button className="button button-secondary" onClick={() => setMode('choose')}>
-                                    Späť
-                                </button>
-                            </div>
-                        </div>
-                    )}
-
-                    {mode === 'existing' && (
-                        <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-                            <div className="form-group">
-                                <div className="detail-label">Zadaj sync kód</div>
-                                <input
-                                    type="text"
-                                    className="input-field"
-                                    placeholder="REZIS-XXXX"
-                                    value={syncCode}
-                                    onChange={(e) => setSyncCode(e.target.value.toUpperCase())}
-                                    style={{ textTransform: 'uppercase' }}
-                                />
-                            </div>
-
-                            <div className="info-box">
-                                Zadaj kód ktorý si dostal na inom zariadení. Všetky dáta sa automaticky synchronizujú.
-                            </div>
-
-                            <div style={{ display: 'flex', gap: '16px', marginTop: '40px' }}>
-                                <button className="button" onClick={handleUseExisting}>
-                                    Pripojiť sa
-                                </button>
-                                <button className="button button-secondary" onClick={() => setMode('choose')}>
-                                    Späť
-                                </button>
-                            </div>
-                        </div>
-                    )}
-                </div>
-            );
-        }
-
-        function SyncBadge({ syncCode, onShowCode }) {
-            const [isOnline, setIsOnline] = useState(true);
-
-            useEffect(() => {
-                const handleOnline = () => setIsOnline(true);
-                const handleOffline = () => setIsOnline(false);
-                
-                window.addEventListener('online', handleOnline);
-                window.addEventListener('offline', handleOffline);
-                
-                return () => {
-                    window.removeEventListener('online', handleOnline);
-                    window.removeEventListener('offline', handleOffline);
+            const handleAddContact = (newContact) => {
+                const contactWithId = {
+                    ...newContact,
+                    id: Math.max(0, ...contacts.map(c => c.id)) + 1,
+                    createdAt: new Date().toISOString()
                 };
-            }, []);
+                saveToFirebase([...contacts, contactWithId]);
+                setShowAddModal(false);
+            };
+
+            const handleUpdateContact = (updated) => {
+                const newContacts = contacts.map(c => c.id === updated.id ? updated : c);
+                saveToFirebase(newContacts);
+                setSelectedContact(null);
+            };
+
+            // Random goals
+            const goalContacts = contacts
+                .filter(c => c.status === 'Na oslovenie')
+                .sort(() => Math.random() - 0.5)
+                .slice(0, 3);
+
+            // Filtered contacts
+            const filteredContacts = contacts.filter(c => {
+                if (filterStatus !== 'all' && c.status !== filterStatus) return false;
+                if (filterType !== 'all' && c.type !== filterType) return false;
+                return true;
+            });
+
+            const stats = {
+                total: contacts.length,
+                reziséri: contacts.filter(c => c.type === 'reziser').length,
+                produkcie: contacts.filter(c => c.type === 'produkcia').length,
+                naOslovenie: contacts.filter(c => c.status === 'Na oslovenie').length,
+                osloveny: contacts.filter(c => c.status === 'Oslovený').length,
+                zaujem: contacts.filter(c => c.status === 'Záujem o stretnutie').length,
+            };
 
             return (
-                <div className="sync-badge" onClick={onShowCode}>
-                    <div className={`sync-indicator ${!isOnline ? 'offline' : ''}`}></div>
-                    <span>{isOnline ? 'Synchronizované' : 'Offline'}</span>
-                </div>
+                <>
+                    <div className="container">
+                        {/* Header */}
+                        <div className="main-header">
+                            <div className="logo">NETWORKING TOOL</div>
+                            <div className="sync-status">
+                                <div className="sync-dot"></div>
+                                SYNC: {syncCode}
+                            </div>
+                        </div>
+
+                        {/* Goals */}
+                        {goalContacts.length > 0 && (
+                            <div className="goals-section">
+                                <div className="section-title">#GOALS — Dnes oslovo</div>
+                                <div className="goals-grid">
+                                    {goalContacts.map(contact => (
+                                        <div
+                                            key={contact.id}
+                                            className="goal-card"
+                                            onClick={() => setSelectedContact(contact)}
+                                        >
+                                            <div className="goal-type">{contact.type}</div>
+                                            <div className="goal-name">{contact.name}</div>
+                                            <div className="goal-status">{contact.status}</div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Stats */}
+                        <div className="stats-grid">
+                            <div className="stat-item">
+                                <div className="stat-number">{stats.total}</div>
+                                <div className="stat-label">Celkom</div>
+                            </div>
+                            <div className="stat-item">
+                                <div className="stat-number">{stats.reziséri}</div>
+                                <div className="stat-label">Režiséri</div>
+                            </div>
+                            <div className="stat-item">
+                                <div className="stat-number">{stats.produkcie}</div>
+                                <div className="stat-label">Produkcie</div>
+                            </div>
+                            <div className="stat-item">
+                                <div className="stat-number">{stats.naOslovenie}</div>
+                                <div className="stat-label">Na oslovenie</div>
+                            </div>
+                            <div className="stat-item">
+                                <div className="stat-number">{stats.osloveny}</div>
+                                <div className="stat-label">Oslovených</div>
+                            </div>
+                            <div className="stat-item">
+                                <div className="stat-number">{stats.zaujem}</div>
+                                <div className="stat-label">Záujem</div>
+                            </div>
+                        </div>
+
+                        {/* Add Buttons */}
+                        <div className="add-section">
+                            <div className="section-title">#ADD</div>
+                            <div className="add-buttons">
+                                <button className="add-btn" onClick={() => { setAddType('reziser'); setShowAddModal(true); }}>
+                                    + Režisér
+                                </button>
+                                <button className="add-btn" onClick={() => { setAddType('produkcia'); setShowAddModal(true); }}>
+                                    + Produkcia
+                                </button>
+                                <button className="add-btn" onClick={() => { setAddType('ine'); setShowAddModal(true); }}>
+                                    + Iné
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Filters */}
+                        <div className="filters">
+                            <select className="filter-select" value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
+                                <option value="all">Všetky statusy</option>
+                                <option value="Na oslovenie">Na oslovenie</option>
+                                <option value="Oslovený">Oslovený</option>
+                                <option value="Bez odpovede">Bez odpovede</option>
+                                <option value="Záujem o stretnutie">Záujem o stretnutie</option>
+                                <option value="Odmietnutie">Odmietnutie</option>
+                            </select>
+
+                            <select className="filter-select" value={filterType} onChange={(e) => setFilterType(e.target.value)}>
+                                <option value="all">Všetky typy</option>
+                                <option value="reziser">Režiséri</option>
+                                <option value="produkcia">Produkcie</option>
+                                <option value="ine">Iné</option>
+                            </select>
+                        </div>
+
+                        {/* Contacts Grid */}
+                        {filteredContacts.length === 0 ? (
+                            <div className="empty-state">
+                                <div className="empty-state-title">Zatiaľ žiadne kontakty</div>
+                                <p>Pridaj prvý kontakt pomocou tlačidiel vyššie</p>
+                            </div>
+                        ) : (
+                            <div className="contacts-grid">
+                                {filteredContacts.map(contact => (
+                                    <div
+                                        key={contact.id}
+                                        className="contact-card"
+                                        onClick={() => setSelectedContact(contact)}
+                                    >
+                                        <div className="contact-type">{contact.type}</div>
+                                        <div className="contact-name">{contact.name}</div>
+                                        <div className="contact-status">{contact.status}</div>
+                                        {contact.datumOslovenia && (
+                                            <div className="contact-date">Oslovený: {contact.datumOslovenia}</div>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Detail Modal */}
+                    {selectedContact && (
+                        <ContactModal
+                            contact={selectedContact}
+                            onClose={() => setSelectedContact(null)}
+                            onSave={handleUpdateContact}
+                        />
+                    )}
+
+                    {/* Add Modal */}
+                    {showAddModal && (
+                        <AddContactModal
+                            type={addType}
+                            onClose={() => setShowAddModal(false)}
+                            onSave={handleAddContact}
+                        />
+                    )}
+                </>
             );
         }
 
-        function HomePage({ stats, onNavigate }) {
-            return (
-                <div className="container">
-                    <div className="header">
-                        <div className="title">Portfolio</div>
-                        <div className="subtitle">Režiséri / Directors</div>
-                    </div>
+        function ContactModal({ contact, onClose, onSave }) {
+            const [isEditing, setIsEditing] = useState(false);
+            const [edited, setEdited] = useState(contact);
+            const [photo, setPhoto] = useState(contact.photo || null);
 
-                    <div className="stats-grid">
-                        <div className="stat-item">
-                            <div className="stat-number">{stats.total}</div>
-                            <div className="stat-label">Celkom</div>
-                        </div>
-                        <div className="stat-item">
-                            <div className="stat-number">{stats.naOslovenie}</div>
-                            <div className="stat-label">Na oslovenie</div>
-                        </div>
-                        <div className="stat-item">
-                            <div className="stat-number">{stats.osloveny}</div>
-                            <div className="stat-label">Oslovených</div>
-                        </div>
-                        <div className="stat-item">
-                            <div className="stat-number">{stats.zaujem}</div>
-                            <div className="stat-label">Záujem</div>
-                        </div>
-                    </div>
-
-                    <button className="button" onClick={() => onNavigate('list')}>
-                        Zobraziť zoznam
-                    </button>
-                </div>
-            );
-        }
-
-        function DirectorModal({ director, onClose, onSave, isNew }) {
-            const [isEditing, setIsEditing] = useState(isNew);
-            const [editedDirector, setEditedDirector] = useState(director);
-
-            const handleSave = () => {
-                onSave(editedDirector);
-                if (!isNew) setIsEditing(false);
+            const handlePhotoUpload = (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                        setPhoto(reader.result);
+                        setEdited({...edited, photo: reader.result});
+                    };
+                    reader.readAsDataURL(file);
+                }
             };
 
             return (
                 <div className="modal-overlay" onClick={onClose}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <div className="modal-header">
-                            <div>
-                                <div className="director-name">{director.name}</div>
-                                {!isNew && !isEditing && (
-                                    <div className="director-status" style={{marginTop: '8px'}}>
-                                        {director.status}
-                                    </div>
-                                )}
-                            </div>
-                            <button className="close-button" onClick={onClose}>×</button>
+                            <div className="modal-name">{contact.name}</div>
+                            <button className="close-btn" onClick={onClose}>×</button>
                         </div>
 
                         <div className="modal-body">
                             {!isEditing ? (
                                 <>
-                                    {director.bio && (
-                                        <div className="detail-section">
-                                            <div className="detail-label">Bio</div>
-                                            <div className="bio-text">{director.bio}</div>
+                                    {photo && (
+                                        <div className="modal-section">
+                                            <img src={photo} alt={contact.name} style={{maxWidth: '200px', border: '2px solid #fff'}} />
                                         </div>
                                     )}
 
-                                    <div className="detail-section">
-                                        <div className="detail-label">Kontakt</div>
-                                        {director.instagram && (
-                                            <div className="detail-value">
-                                                <a href={director.instagramUrl} target="_blank" rel="noopener noreferrer">
-                                                    @{director.instagram}
-                                                </a>
-                                            </div>
-                                        )}
-                                        {director.email && (
-                                            <div className="detail-value">{director.email}</div>
-                                        )}
-                                        {director.phone && (
-                                            <div className="detail-value">{director.phone}</div>
-                                        )}
+                                    <div className="modal-section">
+                                        <div className="modal-label">Typ</div>
+                                        <div className="modal-value">{contact.type}</div>
                                     </div>
 
-                                    {director.vztah && (
-                                        <div className="detail-section">
-                                            <div className="detail-label">Vzťah</div>
-                                            <div className="detail-value">{director.vztah}</div>
+                                    <div className="modal-section">
+                                        <div className="modal-label">Status</div>
+                                        <div className="modal-value">{contact.status}</div>
+                                    </div>
+
+                                    <div className="modal-section">
+                                        <div className="modal-label">Kontakt</div>
+                                        <div className="contact-links">
+                                            {contact.web && <a href={contact.web} target="_blank" className="contact-link">Web</a>}
+                                            {contact.email && <a href={`mailto:${contact.email}`} className="contact-link">Email</a>}
+                                            {contact.instagram && <a href={contact.instagramUrl} target="_blank" className="contact-link">Instagram</a>}
+                                            {contact.vimeo && <a href={contact.vimeo} target="_blank" className="contact-link">Vimeo</a>}
+                                            {contact.phone && <div className="contact-link">{contact.phone}</div>}
+                                        </div>
+                                    </div>
+
+                                    {contact.bio && (
+                                        <div className="modal-section">
+                                            <div className="modal-label">Bio</div>
+                                            <div className="modal-value">{contact.bio}</div>
                                         </div>
                                     )}
 
-                                    {director.datumOslovenia && (
-                                        <div className="detail-section">
-                                            <div className="detail-label">Dátum oslovenia</div>
-                                            <div className="detail-value">{director.datumOslovenia}</div>
+                                    {contact.vztah && (
+                                        <div className="modal-section">
+                                            <div className="modal-label">Vzťah</div>
+                                            <div className="modal-value">{contact.vztah}</div>
                                         </div>
                                     )}
 
-                                    {director.poslednaKomunikacia && (
-                                        <div className="detail-section">
-                                            <div className="detail-label">Posledná komunikácia</div>
-                                            <div className="detail-value">{director.poslednaKomunikacia}</div>
+                                    {contact.datumOslovenia && (
+                                        <div className="modal-section">
+                                            <div className="modal-label">Dátum oslovenia</div>
+                                            <div className="modal-value">{contact.datumOslovenia}</div>
                                         </div>
                                     )}
 
-                                    {director.poznamky && (
-                                        <div className="detail-section">
-                                            <div className="detail-label">Poznámky</div>
-                                            <div className="detail-value">{director.poznamky}</div>
+                                    {contact.platforma && (
+                                        <div className="modal-section">
+                                            <div className="modal-label">Platforma komunikácie</div>
+                                            <div className="modal-value">{contact.platforma}</div>
+                                        </div>
+                                    )}
+
+                                    {contact.konverzacia && (
+                                        <div className="modal-section">
+                                            <div className="modal-label">Záznam konverzácie</div>
+                                            <div className="modal-value">{contact.konverzacia}</div>
+                                        </div>
+                                    )}
+
+                                    {contact.poznamky && (
+                                        <div className="modal-section">
+                                            <div className="modal-label">Poznámky</div>
+                                            <div className="modal-value">{contact.poznamky}</div>
                                         </div>
                                     )}
 
                                     <div className="button-row">
-                                        <button className="button" onClick={() => setIsEditing(true)}>
-                                            Upraviť
-                                        </button>
+                                        <button className="button" onClick={() => setIsEditing(true)}>Upraviť</button>
                                     </div>
                                 </>
                             ) : (
-                                <div>
-                                    <div className="form-row">
-                                        <div className="form-group">
-                                            <div className="detail-label">Meno</div>
-                                            <input
-                                                type="text"
-                                                className="input-field"
-                                                value={editedDirector.name}
-                                                onChange={(e) => setEditedDirector({...editedDirector, name: e.target.value})}
-                                            />
-                                        </div>
-                                        <div className="form-group">
-                                            <div className="detail-label">Status</div>
-                                            <select
-                                                className="input-field"
-                                                value={editedDirector.status}
-                                                onChange={(e) => setEditedDirector({...editedDirector, status: e.target.value})}
-                                            >
-                                                <option value="Na oslovenie">Na oslovenie</option>
-                                                <option value="Oslovený">Oslovený</option>
-                                                <option value="Bez odpovede">Bez odpovede</option>
-                                                <option value="Záujem o stretnutie">Záujem o stretnutie</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div className="form-row">
-                                        <div className="form-group">
-                                            <div className="detail-label">Instagram (bez @)</div>
-                                            <input
-                                                type="text"
-                                                className="input-field"
-                                                value={editedDirector.instagram}
-                                                onChange={(e) => {
-                                                    const ig = e.target.value;
-                                                    setEditedDirector({
-                                                        ...editedDirector,
-                                                        instagram: ig,
-                                                        instagramUrl: ig ? `https://www.instagram.com/${ig}/` : ''
-                                                    });
-                                                }}
-                                            />
-                                        </div>
-                                        <div className="form-group">
-                                            <div className="detail-label">Email</div>
-                                            <input
-                                                type="email"
-                                                className="input-field"
-                                                value={editedDirector.email}
-                                                onChange={(e) => setEditedDirector({...editedDirector, email: e.target.value})}
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="form-row">
-                                        <div className="form-group">
-                                            <div className="detail-label">Telefón</div>
-                                            <input
-                                                type="tel"
-                                                className="input-field"
-                                                value={editedDirector.phone}
-                                                onChange={(e) => setEditedDirector({...editedDirector, phone: e.target.value})}
-                                            />
-                                        </div>
-                                        <div className="form-group">
-                                            <div className="detail-label">Vzťah</div>
-                                            <input
-                                                type="text"
-                                                className="input-field"
-                                                value={editedDirector.vztah}
-                                                onChange={(e) => setEditedDirector({...editedDirector, vztah: e.target.value})}
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="form-row">
-                                        <div className="form-group">
-                                            <div className="detail-label">Dátum oslovenia</div>
-                                            <input
-                                                type="date"
-                                                className="input-field"
-                                                value={editedDirector.datumOslovenia}
-                                                onChange={(e) => setEditedDirector({...editedDirector, datumOslovenia: e.target.value})}
-                                            />
-                                        </div>
-                                        <div className="form-group">
-                                            <div className="detail-label">Posledná komunikácia</div>
-                                            <input
-                                                type="date"
-                                                className="input-field"
-                                                value={editedDirector.poslednaKomunikacia}
-                                                onChange={(e) => setEditedDirector({...editedDirector, poslednaKomunikacia: e.target.value})}
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="form-group">
-                                        <div className="detail-label">Bio</div>
-                                        <textarea
-                                            className="input-field"
-                                            value={editedDirector.bio}
-                                            onChange={(e) => setEditedDirector({...editedDirector, bio: e.target.value})}
-                                        />
-                                    </div>
-
-                                    <div className="form-group">
-                                        <div className="detail-label">Poznámky</div>
-                                        <textarea
-                                            className="input-field"
-                                            value={editedDirector.poznamky}
-                                            onChange={(e) => setEditedDirector({...editedDirector, poznamky: e.target.value})}
-                                        />
-                                    </div>
-
-                                    <div className="button-row">
-                                        <button className="button" onClick={handleSave}>
-                                            {isNew ? 'Pridať' : 'Uložiť'}
-                                        </button>
-                                        {!isNew && (
-                                            <button className="button button-secondary" onClick={() => setIsEditing(false)}>
-                                                Zrušiť
-                                            </button>
-                                        )}
-                                    </div>
-                                </div>
+                                <ContactForm
+                                    contact={edited}
+                                    onChange={setEdited}
+                                    onSave={() => { onSave(edited); setIsEditing(false); }}
+                                    onCancel={() => setIsEditing(false)}
+                                    onPhotoUpload={handlePhotoUpload}
+                                    photo={photo}
+                                />
                             )}
                         </div>
                     </div>
@@ -880,218 +897,205 @@
             );
         }
 
-        function ListView({ directors, onSelectDirector }) {
-            return (
-                <div className="director-list">
-                    {directors.map(director => (
-                        <div
-                            key={director.id}
-                            className="director-item"
-                            onClick={() => onSelectDirector(director)}
-                        >
-                            <div className="director-name">{director.name}</div>
-                            <div className="director-status">{director.status}</div>
-                            {director.datumOslovenia && (
-                                <div className="director-meta">
-                                    Oslovený: {director.datumOslovenia}
-                                </div>
-                            )}
-                        </div>
-                    ))}
-                </div>
-            );
-        }
+        function AddContactModal({ type, onClose, onSave }) {
+            const [newContact, setNewContact] = useState({
+                name: '',
+                type: type,
+                status: 'Na oslovenie',
+                web: '',
+                email: '',
+                instagram: '',
+                instagramUrl: '',
+                vimeo: '',
+                phone: '',
+                bio: '',
+                vztah: '',
+                datumOslovenia: '',
+                platforma: '',
+                konverzacia: '',
+                poznamky: '',
+                photo: null
+            });
 
-        function SyncCodeModal({ syncCode, onClose }) {
-            const [copied, setCopied] = useState(false);
+            const [photo, setPhoto] = useState(null);
 
-            const handleCopy = () => {
-                navigator.clipboard.writeText(syncCode);
-                setCopied(true);
-                setTimeout(() => setCopied(false), 2000);
-            };
-
-            const handleReset = () => {
-                if (confirm('Naozaj chceš resetovať aplikáciu? Stratíš prístup k aktuálnym dátam.')) {
-                    localStorage.removeItem('syncCode');
-                    window.location.reload();
+            const handlePhotoUpload = (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                        setPhoto(reader.result);
+                        setNewContact({...newContact, photo: reader.result});
+                    };
+                    reader.readAsDataURL(file);
                 }
             };
 
             return (
                 <div className="modal-overlay" onClick={onClose}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{maxWidth: '500px'}}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <div className="modal-header">
-                            <div className="director-name">Synchronizácia</div>
-                            <button className="close-button" onClick={onClose}>×</button>
+                            <div className="modal-name">Pridať {type === 'reziser' ? 'Režiséra' : type === 'produkcia' ? 'Produkciu' : 'Kontakt'}</div>
+                            <button className="close-btn" onClick={onClose}>×</button>
                         </div>
                         <div className="modal-body">
-                            <div className="sync-code-display">
-                                <div className="detail-label">Tvoj sync kód</div>
-                                <div className="sync-code">{syncCode}</div>
-                            </div>
-
-                            <div className="info-box">
-                                Použi tento kód na pripojenie ďalších zariadení. Všetky zariadenia s týmto kódom budú mať prístup k rovnakým dátam.
-                            </div>
-
-                            <div className="button-row">
-                                <button className="button" onClick={handleCopy}>
-                                    {copied ? 'Skopírované!' : 'Kopírovať kód'}
-                                </button>
-                                <button className="button button-secondary" onClick={handleReset}>
-                                    Resetovať aplikáciu
-                                </button>
-                            </div>
+                            <ContactForm
+                                contact={newContact}
+                                onChange={setNewContact}
+                                onSave={() => onSave(newContact)}
+                                onCancel={onClose}
+                                onPhotoUpload={handlePhotoUpload}
+                                photo={photo}
+                                isNew={true}
+                            />
                         </div>
                     </div>
                 </div>
             );
         }
 
-        function App() {
-            const [syncCode, setSyncCode] = useState(null);
-            const [directors, setDirectors] = useState([]);
-            const [currentView, setCurrentView] = useState('home');
-            const [selectedDirector, setSelectedDirector] = useState(null);
-            const [showAddModal, setShowAddModal] = useState(false);
-            const [showSyncModal, setShowSyncModal] = useState(false);
-
-            // Listen to Firestore changes
-            useEffect(() => {
-                if (!syncCode) return;
-
-                const directorsRef = doc(db, 'workspaces', syncCode);
-                const unsubscribe = onSnapshot(directorsRef, (snapshot) => {
-                    if (snapshot.exists()) {
-                        const data = snapshot.data();
-                        setDirectors(data.directors || []);
-                    }
-                });
-
-                return () => unsubscribe();
-            }, [syncCode]);
-
-            // Save to Firestore
-            const saveToFirestore = async (updatedDirectors) => {
-                if (!syncCode) return;
-
-                try {
-                    const directorsRef = doc(db, 'workspaces', syncCode);
-                    await setDoc(directorsRef, {
-                        directors: updatedDirectors,
-                        updatedAt: new Date().toISOString()
-                    }, { merge: true });
-                } catch (error) {
-                    console.error('Error saving to Firestore:', error);
-                    alert('Chyba pri ukladaní. Skontrolujte internetové pripojenie.');
-                }
-            };
-
-            const handleUpdateDirector = (updatedDirector) => {
-                const newDirectors = directors.map(d => d.id === updatedDirector.id ? updatedDirector : d);
-                saveToFirestore(newDirectors);
-                setSelectedDirector(null);
-            };
-
-            const handleAddDirector = (newDirector) => {
-                const directorWithId = {
-                    ...newDirector,
-                    id: Math.max(0, ...directors.map(d => d.id)) + 1
-                };
-                const newDirectors = [...directors, directorWithId];
-                saveToFirestore(newDirectors);
-                setShowAddModal(false);
-            };
-
-            const stats = {
-                total: directors.length,
-                naOslovenie: directors.filter(d => d.status === 'Na oslovenie').length,
-                osloveny: directors.filter(d => d.status === 'Oslovený' || d.status === 'Bez odpovede').length,
-                zaujem: directors.filter(d => d.status === 'Záujem o stretnutie').length,
-            };
-
-            const emptyDirector = {
-                id: 0,
-                name: '',
-                instagram: '',
-                instagramUrl: '',
-                email: '',
-                phone: '',
-                vztah: '',
-                status: 'Na oslovenie',
-                datumOslovenia: '',
-                poslednaKomunikacia: '',
-                poznamky: '',
-                bio: ''
-            };
-
-            if (!syncCode) {
-                return <SyncSetup onSetupComplete={setSyncCode} />;
-            }
-
+        function ContactForm({ contact, onChange, onSave, onCancel, onPhotoUpload, photo, isNew }) {
             return (
                 <>
-                    <SyncBadge syncCode={syncCode} onShowCode={() => setShowSyncModal(true)} />
-
-                    {currentView === 'home' && (
-                        <HomePage stats={stats} onNavigate={setCurrentView} />
-                    )}
-
-                    {currentView === 'list' && (
-                        <div className="container">
-                            <div className="header">
-                                <div className="title">
-                                    <button
-                                        className="button button-secondary"
-                                        onClick={() => setCurrentView('home')}
-                                        style={{padding: '8px 16px', marginRight: '20px'}}
-                                    >
-                                        ← Domov
-                                    </button>
-                                </div>
-                                <div className="subtitle">Všetci režiséri ({directors.length})</div>
-                            </div>
-
-                            <ListView
-                                directors={directors}
-                                onSelectDirector={setSelectedDirector}
-                            />
-
-                            <button
-                                className="add-button"
-                                onClick={() => setShowAddModal(true)}
-                                title="Pridať režiséra"
-                            >
-                                +
-                            </button>
-                        </div>
-                    )}
-
-                    {selectedDirector && (
-                        <DirectorModal
-                            director={selectedDirector}
-                            onClose={() => setSelectedDirector(null)}
-                            onSave={handleUpdateDirector}
-                            isNew={false}
+                    <div className="modal-section">
+                        <div className="modal-label">Fotka (voliteľné)</div>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={onPhotoUpload}
+                            style={{display: 'none'}}
+                            id="photo-upload"
                         />
-                    )}
+                        <label htmlFor="photo-upload" className="photo-upload">
+                            {photo ? (
+                                <img src={photo} alt="Preview" className="photo-preview" />
+                            ) : (
+                                <div style={{fontSize: '32px'}}>+</div>
+                            )}
+                        </label>
+                    </div>
 
-                    {showAddModal && (
-                        <DirectorModal
-                            director={emptyDirector}
-                            onClose={() => setShowAddModal(false)}
-                            onSave={handleAddDirector}
-                            isNew={true}
-                        />
-                    )}
+                    <input
+                        type="text"
+                        className="input-field"
+                        placeholder="Meno *"
+                        value={contact.name}
+                        onChange={(e) => onChange({...contact, name: e.target.value})}
+                    />
 
-                    {showSyncModal && (
-                        <SyncCodeModal
-                            syncCode={syncCode}
-                            onClose={() => setShowSyncModal(false)}
+                    <select
+                        className="input-field"
+                        value={contact.status}
+                        onChange={(e) => onChange({...contact, status: e.target.value})}
+                    >
+                        <option value="Na oslovenie">Na oslovenie</option>
+                        <option value="Oslovený">Oslovený</option>
+                        <option value="Bez odpovede">Bez odpovede</option>
+                        <option value="Záujem o stretnutie">Záujem o stretnutie</option>
+                        <option value="Odmietnutie">Odmietnutie</option>
+                    </select>
+
+                    <div className="form-row">
+                        <input
+                            type="url"
+                            className="input-field"
+                            placeholder="Web"
+                            value={contact.web}
+                            onChange={(e) => onChange({...contact, web: e.target.value})}
                         />
-                    )}
+                        <input
+                            type="email"
+                            className="input-field"
+                            placeholder="Email"
+                            value={contact.email}
+                            onChange={(e) => onChange({...contact, email: e.target.value})}
+                        />
+                    </div>
+
+                    <div className="form-row">
+                        <input
+                            type="text"
+                            className="input-field"
+                            placeholder="Instagram (bez @)"
+                            value={contact.instagram}
+                            onChange={(e) => {
+                                const ig = e.target.value;
+                                onChange({
+                                    ...contact,
+                                    instagram: ig,
+                                    instagramUrl: ig ? `https://www.instagram.com/${ig}/` : ''
+                                });
+                            }}
+                        />
+                        <input
+                            type="url"
+                            className="input-field"
+                            placeholder="Vimeo"
+                            value={contact.vimeo}
+                            onChange={(e) => onChange({...contact, vimeo: e.target.value})}
+                        />
+                    </div>
+
+                    <input
+                        type="tel"
+                        className="input-field"
+                        placeholder="Telefón"
+                        value={contact.phone}
+                        onChange={(e) => onChange({...contact, phone: e.target.value})}
+                    />
+
+                    <input
+                        type="date"
+                        className="input-field"
+                        placeholder="Dátum oslovenia"
+                        value={contact.datumOslovenia}
+                        onChange={(e) => onChange({...contact, datumOslovenia: e.target.value})}
+                    />
+
+                    <input
+                        type="text"
+                        className="input-field"
+                        placeholder="Platforma komunikácie (napr. Instagram DM, Email...)"
+                        value={contact.platforma}
+                        onChange={(e) => onChange({...contact, platforma: e.target.value})}
+                    />
+
+                    <textarea
+                        className="input-field"
+                        placeholder="Bio"
+                        value={contact.bio}
+                        onChange={(e) => onChange({...contact, bio: e.target.value})}
+                    />
+
+                    <textarea
+                        className="input-field"
+                        placeholder="Vzťah"
+                        value={contact.vztah}
+                        onChange={(e) => onChange({...contact, vztah: e.target.value})}
+                    />
+
+                    <textarea
+                        className="input-field"
+                        placeholder="Záznam konverzácie"
+                        value={contact.konverzacia}
+                        onChange={(e) => onChange({...contact, konverzacia: e.target.value})}
+                    />
+
+                    <textarea
+                        className="input-field"
+                        placeholder="Poznámky"
+                        value={contact.poznamky}
+                        onChange={(e) => onChange({...contact, poznamky: e.target.value})}
+                    />
+
+                    <div className="button-row">
+                        <button className="button" onClick={onSave}>
+                            {isNew ? 'Pridať' : 'Uložiť'}
+                        </button>
+                        <button className="button button-secondary" onClick={onCancel}>
+                            Zrušiť
+                        </button>
+                    </div>
                 </>
             );
         }
