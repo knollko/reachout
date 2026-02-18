@@ -577,7 +577,6 @@
         const [contacts, setContacts] = useState([]);
         const [selectedContact, setSelectedContact] = useState(null);
         const [showAddModal, setShowAddModal] = useState(false);
-        const [showImportModal, setShowImportModal] = useState(false);
         const [addType, setAddType] = useState('reziser');
         const [filterStatus, setFilterStatus] = useState('all');
         const [filterType, setFilterType] = useState('all');
@@ -604,43 +603,6 @@
             } catch (error) {
                 console.error('Error:', error);
             }
-        };
-
-        const handleExport = () => {
-            const exportData = {
-                contacts: contacts,
-                exportedAt: new Date().toISOString()
-            };
-            const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `networking_backup_${new Date().toISOString().split('T')[0]}.json`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        };
-
-        const handleImport = async (file) => {
-            const reader = new FileReader();
-            reader.onload = async (e) => {
-                try {
-                    const data = JSON.parse(e.target.result);
-                    if (data.contacts && Array.isArray(data.contacts)) {
-                        if (confirm(`Importovať ${data.contacts.length} kontaktov? Existujúce dáta budú nahradené!`)) {
-                            await saveToFirebase(data.contacts);
-                            alert('Import úspešný!');
-                            setShowImportModal(false);
-                        }
-                    } else {
-                        alert('Neplatný formát súboru!');
-                    }
-                } catch (error) {
-                    alert('Chyba pri importe!');
-                }
-            };
-            reader.readAsText(file);
         };
 
         const handleAddContact = (newContact) => {
@@ -679,7 +641,6 @@
             naOslovenie: contacts.filter(c => c.status === 'Na oslovenie').length,
             osloveny: contacts.filter(c => c.status === 'Oslovený').length,
             zaujem: contacts.filter(c => c.status === 'Záujem o stretnutie').length,
-            vyselJob: contacts.filter(c => c.status === 'Vyšiel job').length,
         };
 
         return (
@@ -737,14 +698,10 @@
                             <div className="stat-label">Oslovených</div>
                         </div>
                         <div className="stat-item">
-                        <div className="stat-number">{stats.zaujem}</div>
-                        <div className="stat-label">Záujem</div>
+                            <div className="stat-number">{stats.zaujem}</div>
+                            <div className="stat-label">Záujem</div>
+                        </div>
                     </div>
-                    <div className="stat-item">
-                        <div className="stat-number" style={{color: '#00ff00'}}>{stats.vyselJob}</div>
-                        <div className="stat-label">Vyšiel job 🎉</div>
-                    </div>
-                </div>
 
                     {/* Add Buttons */}
                     <div className="add-section">
@@ -755,9 +712,6 @@
                             </button>
                             <button className="add-btn" onClick={() => { setAddType('produkcia'); setShowAddModal(true); }}>
                                 + Produkcia
-                            </button>
-                            <button className="add-btn" onClick={() => { setAddType('agent'); setShowAddModal(true); }}>
-                                + Agent
                             </button>
                             <button className="add-btn" onClick={() => { setAddType('ine'); setShowAddModal(true); }}>
                                 + Iné
@@ -773,7 +727,6 @@
                             <option value="Oslovený">Oslovený</option>
                             <option value="Bez odpovede">Bez odpovede</option>
                             <option value="Záujem o stretnutie">Záujem o stretnutie</option>
-                            <option value="Vyšiel job">Vyšiel job 🎉</option>
                             <option value="Odmietnutie">Odmietnutie</option>
                         </select>
 
